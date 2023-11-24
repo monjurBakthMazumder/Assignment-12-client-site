@@ -14,6 +14,11 @@ import MyContactRequest from "../Pages/Dashboard/DashboardPages/MyContactRequest
 import GotMarried from "../Pages/Dashboard/DashboardPages/GotMarried/GotMarried";
 import FavoritesBioData from "../Pages/Dashboard/DashboardPages/FavoritesBioData/FavoritesBioData";
 import PrivateRoute from "./PrivateRoute";
+import AdminDashboard from "../Pages/Dashboard/DashboardAdminPages/AdminDashboard/AdminDashboard";
+import ManageUsers from "../Pages/Dashboard/DashboardAdminPages/ManageUsers/ManageUsers";
+import ApprovedPremium from "../Pages/Dashboard/DashboardAdminPages/ApprovedPremium/ApprovedPremium";
+import ApprovedContactRequest from "../Pages/Dashboard/DashboardAdminPages/ApprovedContactRequest/ApprovedContactRequest";
+import SuccessStory from "../Pages/Dashboard/DashboardAdminPages/SuccessStory/SuccessStory";
 
 const Router = createBrowserRouter([
   {
@@ -56,6 +61,7 @@ const Router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
     children: [
+       // normal user routes
       {
         path: "/dashboard/edit-bioData",
         element: (
@@ -95,6 +101,27 @@ const Router = createBrowserRouter([
             <GotMarried />
           </PrivateRoute>
         ),
+      },
+      // admin only routes
+      {
+        path: '/dashboard/admin',
+        element: <AdminDashboard/>
+      },
+      {
+        path: '/dashboard/menage-users',
+        element: <ManageUsers/>
+      },
+      {
+        path: '/dashboard/approved-premium',
+        element: <ApprovedPremium/>
+      },
+      {
+        path: '/dashboard/approved-contact-request',
+        element: <ApprovedContactRequest/>
+      },
+      {
+        path: '/dashboard/success-story',
+        element: <SuccessStory/>
       },
     ],
   },

@@ -60,7 +60,7 @@ const Slider = () => {
                   to={"/biodatas"}
                   className="flex justify-center items-center"
                 >
-                  <button className="bg-secondary border border-secondary hover:text-secondary hover:bg-transparent px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
+                  <button className="bg-pink-600 border border-pink-600 hover:border-white hover:bg-transparent px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
                     View all Biodatas <AiOutlineArrowRight />
                   </button>
                 </Link>
@@ -87,7 +87,7 @@ const Slider = () => {
                   to={"/biodatas"}
                   className="flex justify-center items-center"
                 >
-                  <button className="bg-secondary border border-secondary hover:text-secondary hover:bg-transparent px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
+                  <button className="bg-pink-600 border border-pink-600 hover:border-white hover:bg-transparent px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
                     View all Biodatas <AiOutlineArrowRight />
                   </button>
                 </Link>
@@ -114,7 +114,7 @@ const Slider = () => {
                   to={"/biodatas"}
                   className="flex justify-center items-center"
                 >
-                  <button className="bg-secondary border border-secondary hover:text-secondary hover:bg-transparent px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
+                  <button className="bg-pink-600 border border-pink-600 hover:border-white hover:bg-transparent px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
                     View all Biodatas <AiOutlineArrowRight />
                   </button>
                 </Link>
