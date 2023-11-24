@@ -1,6 +1,5 @@
 import axios from "axios";
-import UseAuth from "./UseAuth";
-import { useNavigate } from "react-router-dom";
+// import UseAuth from "./UseAuth";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
@@ -8,8 +7,7 @@ const axiosSecure = axios.create({
     withCredentials: true,
   });
   const useAxiosSecure = () => {
-    const { logout } = UseAuth();
-    const navigate = useNavigate();
+    // const { logoutUser } = UseAuth();
   
     useEffect(() => {
       axiosSecure.interceptors.response.use(
@@ -18,13 +16,12 @@ const axiosSecure = axios.create({
         },
         (error) => {
           if (error.response.status === 401 || error.response.status === 403) {
-            logout().then(() => {
-              navigate("/login");
-            });
+            // logoutUser().then(() => {
+            // });
           }
         }
       );
-    }, [logout, navigate]);
+    }, []);
   
     return axiosSecure;
   };

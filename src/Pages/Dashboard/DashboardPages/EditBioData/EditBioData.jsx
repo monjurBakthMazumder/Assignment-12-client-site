@@ -1,12 +1,16 @@
 import { useForm } from "react-hook-form";
 import UseAuth from "../../../../Hock/UseAuth";
+import useAxiosSecure from "../../../../Hock/useAxiosSecure";
+import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 
 const EditBioData = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -71,6 +75,16 @@ const EditBioData = () => {
       expectedWeight,
     };
     console.log(bioDataInfo);
+    //   await axiosSecure.post("/foods", addFood).then((res) => {
+    //     if (res.data.insertedId) {
+    //       Swal.fire({
+    //         title: "Food added",
+    //         text: "Your food added successfully",
+    //         icon: "success",
+    //       });
+    //       reset();
+    //     }
+    //   });
   };
   return (
     <>
