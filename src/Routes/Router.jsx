@@ -20,7 +20,7 @@ const Router = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path: '/bio-data',
+                path: '/biodatas',
                 element: <BioData/>
             },
             {
