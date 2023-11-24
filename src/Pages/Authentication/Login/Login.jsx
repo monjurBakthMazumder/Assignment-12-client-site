@@ -13,6 +13,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const loc = useLocation();
+
+  const from = loc.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -30,7 +32,7 @@ const Login = () => {
     // login user
     loginUser(email, password)
       .then(() => {
-        navigate(loc.state ? loc.state : "/");
+        navigate(from, { replace: true });
         Swal.fire({
           title: "LogIn",
           text: "Login successfully",

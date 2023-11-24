@@ -14,6 +14,8 @@ const Registration = () => {
   const { createUser, setUser } = UseAuth();
 
   const loc = useLocation();
+
+  const from = loc.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const {
     register,
@@ -57,7 +59,7 @@ const Registration = () => {
           photoURL: photo,
           email: email,
         });
-        navigate(loc.state ? loc.state : "/");
+        navigate(from, { replace: true });
       })
       .catch(() => {
         setError("Email already registered");

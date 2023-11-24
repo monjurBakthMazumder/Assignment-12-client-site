@@ -8,10 +8,12 @@ const SocialSingIn = () => {
   const { singInWithGoogle, singInWithGithub } = UseAuth();
   const navigate = useNavigate();
   const loc = useLocation();
+
+  const from = loc.state?.from?.pathname || "/";
   const handleSocialLogin = (media) => {
     media()
       .then(() => {
-        navigate(loc.state ? loc.state : "/");
+        navigate(from, { replace: true });
         Swal.fire({
           title: "LogIn",
           text: "Login successfully",

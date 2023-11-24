@@ -13,67 +13,91 @@ import EditBioData from "../Pages/Dashboard/DashboardPages/EditBioData/EditBioDa
 import MyContactRequest from "../Pages/Dashboard/DashboardPages/MyContactRequest/MyContactRequest";
 import GotMarried from "../Pages/Dashboard/DashboardPages/GotMarried/GotMarried";
 import FavoritesBioData from "../Pages/Dashboard/DashboardPages/FavoritesBioData/FavoritesBioData";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
-    {
-        path: '/',
-        element: <MainLayout/>,
-        errorElement: <ErrorPage/>,
-        children: [
-            {
-                path: '/',
-                element: <Home/>
-            },
-            {
-                path: '/biodatas',
-                element: <BioData/>
-            },
-            {
-                path: '/about-us',
-                element: <AboutUs/>
-            },
-            {
-                path: '/contact-us',
-                element: <ContactUs/>
-            }
-        ]
-    },
-    {
-        path: '/login',
-        element: <Login/>
-    },
-    {
-        path: '/registration',
-        element: <Registration/>
-    },
-    {
-        path: '/dashboard',
-        element: <DashboardLayout/>,
-        errorElement: <ErrorPage/>,
-        children: [
-            {
-                path: '/dashboard/edit-bioData',
-                element: <EditBioData/>
-            },
-            {
-                path: '/dashboard/view-bioData',
-                element: <ViewBioData/>
-            },
-            {
-                path: '/dashboard/my-contact-request',
-                element: <MyContactRequest/>
-            },
-            {
-                path: '/dashboard/favorites-bioData',
-                element: <FavoritesBioData/>
-            },
-            {
-                path: '/dashboard/got-married',
-                element: <GotMarried/>
-            },
-        ]
-    }
-    
-])
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/biodatas",
+        element: <BioData />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/registration",
+    element: <Registration />,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/dashboard/edit-bioData",
+        element: (
+          <PrivateRoute>
+            <EditBioData />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/view-bioData",
+        element: (
+          <PrivateRoute>
+            <ViewBioData />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/my-contact-request",
+        element: (
+          <PrivateRoute>
+            <MyContactRequest />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/favorites-bioData",
+        element: (
+          <PrivateRoute>
+            <FavoritesBioData />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/got-married",
+        element: (
+          <PrivateRoute>
+            <GotMarried />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 export default Router;
