@@ -1,8 +1,9 @@
+import SideBar from "../Component/Shared/SideBar/SideBar";
 
 const DashboardLayout = () => {
     return (
         <div>
-            DashboardLayout
+            <SideBar/>
         </div>
     );
 };

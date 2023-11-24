@@ -1,9 +1,9 @@
-import Slider from "../Slider/Slider";
+// import Slider from "../Slider/Slider";
 
 const Home = () => {
     return (
         <div>
-            <Slider/>
+            {/* <Slider/> */}
             Home
         </div>
     );

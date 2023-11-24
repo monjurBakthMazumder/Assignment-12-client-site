@@ -8,6 +8,11 @@ import ContactUs from "../Pages/ContactUs/ContactUs/ContactUs";
 import Login from "../Pages/Authentication/Login/Login";
 import Registration from "../Pages/Authentication/Registration/Registration";
 import DashboardLayout from "../Layout/DashboardLayout";
+import ViewBioData from "../Pages/Dashboard/DashboardPages/ViewBioData/ViewBioData";
+import EditBioData from "../Pages/Dashboard/DashboardPages/EditBioData/EditBioData";
+import MyContactRequest from "../Pages/Dashboard/DashboardPages/MyContactRequest/MyContactRequest";
+import GotMarried from "../Pages/Dashboard/DashboardPages/GotMarried/GotMarried";
+import FavoritesBioData from "../Pages/Dashboard/DashboardPages/FavoritesBioData/FavoritesBioData";
 
 const Router = createBrowserRouter([
     {
@@ -43,8 +48,32 @@ const Router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout/>
+        element: <DashboardLayout/>,
+        errorElement: <ErrorPage/>,
+        children: [
+            {
+                path: '/dashboard/edit-bioData',
+                element: <EditBioData/>
+            },
+            {
+                path: '/dashboard/view-bioData',
+                element: <ViewBioData/>
+            },
+            {
+                path: '/dashboard/my-contact-request',
+                element: <MyContactRequest/>
+            },
+            {
+                path: '/dashboard/favorites-bioData',
+                element: <FavoritesBioData/>
+            },
+            {
+                path: '/dashboard/got-married',
+                element: <GotMarried/>
+            },
+        ]
     }
+    
 ])
 
 export default Router;
