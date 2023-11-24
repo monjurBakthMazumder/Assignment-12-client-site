@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <>
       <Header/>
-      <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-pink-100 border-b border-white/[.5] text-sm py-3 sm:py-0">
+      <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-pink-100 border-b border-pink-600 text-sm py-3 sm:py-0">
         <nav
           className="relative max-w-[100rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
           aria-label="Global"

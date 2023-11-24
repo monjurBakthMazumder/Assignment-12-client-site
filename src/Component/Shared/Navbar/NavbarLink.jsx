@@ -91,7 +91,7 @@ const NavbarLink = () => {
         ) : (
           <Link
             to={"/login"}
-            className="flex items-center gap-x-2 font-medium text-white sm:border-l sm:border-white/[.3] sm:my-6 sm:pl-6"
+            className="text-base flex items-center gap-x-2 font-medium text-pink-600 sm:border-l sm:border-pink-900 sm:my-6 sm:pl-6"
           >
             Log in
           </Link>
