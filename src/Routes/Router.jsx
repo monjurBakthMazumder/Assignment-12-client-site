@@ -68,7 +68,7 @@ const Router = createBrowserRouter([
           <PrivateRoute>
             <EditBioData />
           </PrivateRoute>
-        ),
+        )
       },
       {
         path: "/dashboard/view-bioData",
