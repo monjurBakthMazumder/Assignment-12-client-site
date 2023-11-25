@@ -58,6 +58,7 @@ const EditBioData = () => {
     const expectedHight = data?.expectedHight;
     const expectedWeight = data?.expectedWeight;
     const expectedAge = Number(data.expectedAge);
+    const premium = false;
     const bioDataInfo = {
       name,
       gender,
@@ -77,6 +78,7 @@ const EditBioData = () => {
       expectedAge,
       expectedHight,
       expectedWeight,
+      premium,
     };
     console.log(bioDataInfo);
     await axiosSecure.put("/bioData", bioDataInfo).then((res) => {
@@ -133,8 +135,8 @@ const EditBioData = () => {
                     {...register("gender", { required: "Gender is required" })}
                     className="py-3 px-4 block w-full border border-pink-200 rounded-md text-sm focus:border-pink-500 focus:ring-pink-500 outline-none mt-2"
                   >
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
                   </select>
                 </label>
                 <p className="text-xs text-red-600 mt-1">
