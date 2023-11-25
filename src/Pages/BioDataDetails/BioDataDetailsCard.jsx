@@ -2,11 +2,18 @@ import PropTypes from "prop-types";
 import { FaPhoneSquare } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import useUserIsPremium from "../../Hock/useUserIsPremium";
+import useAxiosSecure from "../../Hock/useAxiosSecure";
+import UseAuth from "../../Hock/UseAuth";
+import Swal from "sweetalert2";
 
 const BioDataDetailsCard = ({ info }) => {
   const isUserPremium = useUserIsPremium();
+  const { user } = UseAuth();
+  const axiosSecure = useAxiosSecure();
   console.log("isUserPremium", isUserPremium);
   const {
+    _id,
+    bioData_id,
     name,
     gender,
     fatherName,
@@ -25,8 +32,34 @@ const BioDataDetailsCard = ({ info }) => {
     expectedHight,
     expectedWeight,
     expectedAge,
-    bioData_id,
   } = info;
+  const handleAddFavorites = () => {
+    const favorites = {
+      name,
+      email: user?.email,
+      bioData_id,
+      permanentDivision,
+      occupation,
+      dataId: _id,
+    };
+    axiosSecure.post("/favorites", favorites).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        Swal.fire({
+          title: "Added to favorites",
+          text: "Added to favorites successfully",
+          icon: "success",
+        });
+      }
+      else{
+        Swal.fire({
+          title: "Already added",
+          text: "This biodata already added",
+          icon: "error",
+        });
+      }
+    });
+  };
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
       <div className="w-full h-fit">
@@ -98,11 +131,18 @@ const BioDataDetailsCard = ({ info }) => {
         <p className="text-base font-medium">
           <b>Weight:</b> {expectedWeight}
         </p>
-        {isUserPremium || (
-          <button className="w-full my-5 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
-            Request for contact information
+        <div className="flex flex-wrap justify-center items-center gap-5 my-5">
+          <>
+            {isUserPremium || (
+              <button className="flex-1 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium">
+                Request Contact Information
+              </button>
+            )}
+          </>
+          <button onClick={handleAddFavorites} className="flex-1 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium">
+            Add to favourites
           </button>
-        )}
+        </div>
       </div>
     </div>
   );

@@ -7,10 +7,8 @@ const ManageUserRow = ({ item }) => {
   const axiosSecure = useAxiosSecure();
   const handleMakeAdmin = () => {
     const admin = {
-      name,
       email,
       role: "admin",
-      premium,
     };
     Swal.fire({
       title: "Are you sure?",
@@ -36,9 +34,7 @@ const ManageUserRow = ({ item }) => {
   };
   const handleMakePremiumUser = () => {
     const premiumUser = {
-      name,
       email,
-      role,
       premium: true,
     };
     Swal.fire({
@@ -51,7 +47,8 @@ const ManageUserRow = ({ item }) => {
       confirmButtonText: "Yes,make premium!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.put("/users/make-premium-user", premiumUser).then((res) => {
+        axiosSecure.put("/users/make-premium-user", premiumUser)
+        .then((res) => {
           if (res.status === 200) {
             Swal.fire({
               title: "Premium user successful",
