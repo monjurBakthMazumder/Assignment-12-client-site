@@ -11,7 +11,6 @@ const useGetUserBioData = () => {
     const userEmail = user?.email;
     axiosSecure.get(`/bioData/${userEmail}`).then((res) => {
       setInfo(res.data);
-      console.log("object", res.data);
     });
   }, [axiosSecure, user?.email]);
   return info;

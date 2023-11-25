@@ -4,11 +4,9 @@ import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import useGetUserBioData from "../../../../Hock/useGetUserBiodata";
-// import { useLoaderData } from "react-router-dom";
 
 const EditBioData = () => {
   const info = useGetUserBioData();
-  // const info = useLoaderData();
   console.log(info);
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
