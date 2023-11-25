@@ -19,6 +19,7 @@ import ManageUsers from "../Pages/Dashboard/DashboardAdminPages/ManageUsers/Mana
 import ApprovedPremium from "../Pages/Dashboard/DashboardAdminPages/ApprovedPremium/ApprovedPremium";
 import ApprovedContactRequest from "../Pages/Dashboard/DashboardAdminPages/ApprovedContactRequest/ApprovedContactRequest";
 import SuccessStory from "../Pages/Dashboard/DashboardAdminPages/SuccessStory/SuccessStory";
+import BioDataDetails from "../Pages/BioDataDetails/BioDataDetails";
 
 const Router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const Router = createBrowserRouter([
       {
         path: "/biodatas",
         element: <BioData />,
+      },
+      {
+        path: "/biodatas/details/:id",
+        element: <BioDataDetails />,
       },
       {
         path: "/about-us",

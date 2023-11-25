@@ -1,11 +1,12 @@
 import useGetAllBioData from "../../../Hock/useGetAllBioData";
 import FilterOption from "./filterOption";
 import BioDataCard from "./BioDataCard";
+import Container from "../../../Component/Ui/Container";
 
 const BioData = () => {
   const info = useGetAllBioData();
   return (
-    <div className="max-w-[100rem] w-full mx-auto px-4 my-10 md:my-20">
+    <Container>
       <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold justify-center text-center underline mb-5 block">
         All Biodatas: {info?.length}
       </h1>
@@ -21,7 +22,7 @@ const BioData = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

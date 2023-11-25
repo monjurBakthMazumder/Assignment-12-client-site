@@ -22,7 +22,7 @@ const ViewBioData = () => {
     expectedHight,
     expectedWeight,
     expectedAge,
-    premium,
+    premium
   } = info;
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-10 md:py-20">
@@ -33,17 +33,13 @@ const ViewBioData = () => {
         <div>
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{name}</h1>
 
-          {premium && (
-            <>
-              <p className="text-base font-medium flex items-center gap-1">
-                <MdEmail />
-                {email}
-              </p>
-              <p className="text-base font-medium flex items-center gap-1">
-                <FaPhoneSquare /> {mobile}
-              </p>
-            </>
-          )}
+          <p className="text-sm font-medium flex items-center gap-1 mt-2">
+            <MdEmail className="text-md text-pink-600" /> Email:
+            {email}
+          </p>
+          <p className="text-sm font-medium flex items-center gap-1 mb-1">
+            <FaPhoneSquare className="text-md text-pink-600" /> Phone Number {mobile}
+          </p>
           <p className="text-lg font-medium">
             <b>Father name:</b> {fatherName}
           </p>
@@ -82,7 +78,7 @@ const ViewBioData = () => {
           <p className="text-base font-medium">
             <b>Permanent division:</b> {permanentDivision}
           </p>
-          <h1 className="text-lg font-semibold mt-2">Expected Partner: </h1>
+          <h1 className="text-lg font-semibold mt-3">Expected Partner: </h1>
           <p className="text-base font-medium">
             <p className="text-base font-medium">
               <b>Age:</b> {expectedAge} years age
