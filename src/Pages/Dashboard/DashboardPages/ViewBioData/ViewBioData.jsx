@@ -1,9 +1,13 @@
 import useGetUserBioData from "../../../../Hock/useGetUserBiodata";
 import { FaPhoneSquare } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 const ViewBioData = () => {
   const info = useGetUserBioData();
+  const axiosSecure = useAxiosSecure();
   const {
+    _id,
     name,
     gender,
     fatherName,
@@ -23,8 +27,32 @@ const ViewBioData = () => {
     expectedWeight,
     expectedAge,
     bioData_id,
-    premium
+    premium,
+    premiumRequest,
   } = info;
+  const handlePremiumRequest = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to send request for make biodata premium?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, i want!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.put(`/bioData-premium-request/${_id}`).then((res) => {
+          if (res.status === 200) {
+            Swal.fire({
+              title: "Successful!",
+              text: "Your request send successfully.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-10 md:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -34,15 +62,16 @@ const ViewBioData = () => {
         <div>
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{name}</h1>
           <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
-          Biodata id: {bioData_id}
-        </span>
+            Biodata id: {bioData_id}
+          </span>
 
           <p className="text-sm font-medium flex items-center gap-1 mt-2">
             <MdEmail className="text-md text-pink-600" /> Email:
             {email}
           </p>
           <p className="text-sm font-medium flex items-center gap-1 mb-1">
-            <FaPhoneSquare className="text-md text-pink-600" /> Phone Number {mobile}
+            <FaPhoneSquare className="text-md text-pink-600" /> Phone Number{" "}
+            {mobile}
           </p>
           <p className="text-lg font-medium">
             <b>Father name:</b> {fatherName}
@@ -93,11 +122,21 @@ const ViewBioData = () => {
           <p className="text-base font-medium">
             <b>Weight:</b> {expectedWeight}
           </p>
-          {premium || (
-            <button className="w-full my-5 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
-              Make Your Biodata premium
-            </button>
-          )}
+          {premium ||
+            (premiumRequest ? (
+              <h1
+                className="w-full my-5  bg-transparent text-pink-600 border border-pink-500 px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2"
+              >
+                Your biodata premium request is pending
+              </h1>
+            ) : (
+              <button
+                onClick={handlePremiumRequest}
+                className="w-full my-5 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2"
+              >
+                Make biodata to premium
+              </button>
+            ))}
         </div>
       </div>
     </div>

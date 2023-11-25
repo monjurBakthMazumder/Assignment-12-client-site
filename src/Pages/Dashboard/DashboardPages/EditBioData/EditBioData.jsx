@@ -58,6 +58,7 @@ const EditBioData = () => {
     const expectedWeight = data?.expectedWeight;
     const expectedAge = Number(data.expectedAge);
     const premium = false;
+    const premiumRequest = false;
     const bioDataInfo = {
       name,
       gender,
@@ -78,6 +79,7 @@ const EditBioData = () => {
       expectedHight,
       expectedWeight,
       premium,
+      premiumRequest
     };
     console.log(bioDataInfo);
     await axiosSecure.put("/bioData", bioDataInfo).then((res) => {
