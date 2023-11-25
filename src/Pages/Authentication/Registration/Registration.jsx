@@ -8,10 +8,12 @@ import Swal from "sweetalert2";
 import UseAuth from "../../../Hock/UseAuth";
 import { updateProfile } from "firebase/auth";
 import axios from "axios";
+import useAxiosPublic from "../../../Hock/useAxiosPublic";
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const { createUser, setUser } = UseAuth();
+  const axiosPublic = useAxiosPublic();
 
   const loc = useLocation();
 
@@ -29,22 +31,37 @@ const Registration = () => {
       password: "",
     },
   });
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-     // image upload to imgbb and then get an url
-     const imageFile = { image: data.photo[0] }
-     const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, imageFile, {
-         headers: {
-             'content-type': 'multipart/form-data'
-         }
-     });
-    const photo = res.data.data.display_url
+    // image upload to imgbb and then get an url
+    const imageFile = { image: data.photo[0] };
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      imageFile,
+      {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      }
+    );
+    const photo = res.data.data.display_url;
     setError("");
     //create user
     createUser(email, password)
       .then((result) => {
+        const userInfo = {
+          email: email,
+          name: name,
+          role: "User",
+          premium: false,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
         Swal.fire({
           title: "Created account!!",
           text: "Create account successfully",
