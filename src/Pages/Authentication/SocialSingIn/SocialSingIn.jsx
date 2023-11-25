@@ -18,7 +18,7 @@ const SocialSingIn = () => {
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
-          role: "User",
+          role: "user",
           premium: false,
         };
         axiosPublic.post("/users", userInfo).then((res) => {

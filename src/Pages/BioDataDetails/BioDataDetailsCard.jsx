@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { FaPhoneSquare } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import useUserIsPremium from "../../Hock/useUserIsPremium";
 
 const BioDataDetailsCard = ({ info }) => {
+  const isUserPremium = useUserIsPremium();
+  console.log("isUserPremium", isUserPremium);
   const {
     name,
     gender,
@@ -22,7 +25,7 @@ const BioDataDetailsCard = ({ info }) => {
     expectedHight,
     expectedWeight,
     expectedAge,
-    bioData_id
+    bioData_id,
   } = info;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -34,14 +37,18 @@ const BioDataDetailsCard = ({ info }) => {
         <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
           Biodata id: {bioData_id}
         </span>
-        <p className="text-sm font-medium flex items-center gap-1 mt-2">
-          <MdEmail className="text-md text-pink-600" /> Email:
-          {email}
-        </p>
-        <p className="text-sm font-medium flex items-center gap-1 mb-1">
-          <FaPhoneSquare className="text-md text-pink-600" /> Phone Number:
-          {mobile}
-        </p>
+        {isUserPremium && (
+          <>
+            <p className="text-sm font-medium flex items-center gap-1 mt-2">
+              <MdEmail className="text-md text-pink-600" /> Email:
+              {email}
+            </p>
+            <p className="text-sm font-medium flex items-center gap-1 mb-1">
+              <FaPhoneSquare className="text-md text-pink-600" /> Phone Number:
+              {mobile}
+            </p>
+          </>
+        )}
         <p className="text-lg font-medium">
           <b>Father name:</b> {fatherName}
         </p>
@@ -91,9 +98,11 @@ const BioDataDetailsCard = ({ info }) => {
         <p className="text-base font-medium">
           <b>Weight:</b> {expectedWeight}
         </p>
-        <button className="w-full my-5 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
-          Request for contact information
-        </button>
+        {isUserPremium || (
+          <button className="w-full my-5 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
+            Request for contact information
+          </button>
+        )}
       </div>
     </div>
   );

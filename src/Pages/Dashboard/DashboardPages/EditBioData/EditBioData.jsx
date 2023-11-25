@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import useGetUserBioData from "../../../../Hock/useGetUserBiodata";
+import Container from "../../../../Component/Ui/Container";
 
 const EditBioData = () => {
   const info = useGetUserBioData();
@@ -102,7 +103,7 @@ const EditBioData = () => {
       <Helmet>
         <title>MingleHeart | Edit biodata</title>
       </Helmet>
-      <div className="px-4 sm:px-6 lg:px-8 py-10 md:py-20">
+      <Container>
         <div className="max-w-6xl mx-auto border-2 rounded border-pink-400 px-5 sm:px-10 py-10">
           <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
             Edit Biodata
@@ -113,7 +114,7 @@ const EditBioData = () => {
                 <label htmlFor="name">
                   Name
                   <input
-                  defaultValue={info?.name}
+                    defaultValue={info?.name}
                     {...register("name", {
                       required: "Name is required",
                     })}
@@ -129,7 +130,7 @@ const EditBioData = () => {
                 <label htmlFor="gender">
                   Gender
                   <select
-                  defaultValue={info?.gender}
+                    defaultValue={info?.gender}
                     {...register("gender", { required: "Gender is required" })}
                     className="py-3 px-4 block w-full border border-pink-200 rounded-md text-sm focus:border-pink-500 focus:ring-pink-500 outline-none mt-2"
                   >
@@ -147,7 +148,7 @@ const EditBioData = () => {
                 <label htmlFor="fatherName">
                   Father name
                   <input
-                  defaultValue={info?.fatherName}
+                    defaultValue={info?.fatherName}
                     {...register("fatherName", {
                       required: "Father name is required",
                     })}
@@ -163,7 +164,7 @@ const EditBioData = () => {
                 <label htmlFor="motherName">
                   Mother name
                   <input
-                  defaultValue={info?.motherName}
+                    defaultValue={info?.motherName}
                     {...register("motherName", {
                       required: "Mother name is required",
                     })}
@@ -264,7 +265,7 @@ const EditBioData = () => {
                 <label htmlFor="hight">
                   Hight
                   <select
-                  defaultValue={info?.hight}
+                    defaultValue={info?.hight}
                     {...register("hight", {
                       required: "Hight is required",
                     })}
@@ -288,7 +289,7 @@ const EditBioData = () => {
                 <label htmlFor="weight">
                   Weight
                   <select
-                  defaultValue={info?.weight}
+                    defaultValue={info?.weight}
                     {...register("weight", {
                       required: "Weight is required",
                     })}
@@ -312,7 +313,7 @@ const EditBioData = () => {
                 <label htmlFor="occupation">
                   Occupation
                   <select
-                  defaultValue={info?.occupation}
+                    defaultValue={info?.occupation}
                     {...register("occupation", {
                       required: "Occupation is required",
                     })}
@@ -338,7 +339,7 @@ const EditBioData = () => {
                 <label htmlFor="race">
                   Race
                   <select
-                  defaultValue={info?.race}
+                    defaultValue={info?.race}
                     {...register("race", {
                       required: "Race is required",
                     })}
@@ -359,7 +360,7 @@ const EditBioData = () => {
                 <label htmlFor="permanentDivision">
                   Permanent division
                   <select
-                  defaultValue={info?.permanentDivision}
+                    defaultValue={info?.permanentDivision}
                     {...register("permanentDivision", {
                       required: "Permanent division is required",
                     })}
@@ -387,7 +388,7 @@ const EditBioData = () => {
                 <label htmlFor="presentDivision">
                   Present division
                   <select
-                  defaultValue={info?.presentDivision}
+                    defaultValue={info?.presentDivision}
                     {...register("presentDivision", {
                       required: "Present division is required",
                     })}
@@ -417,7 +418,7 @@ const EditBioData = () => {
                 <label htmlFor="expectedHight">
                   Expected hight
                   <select
-                  defaultValue={info?.expectedHight}
+                    defaultValue={info?.expectedHight}
                     {...register("expectedHight", {
                       required: "Expected hight is required",
                     })}
@@ -441,7 +442,7 @@ const EditBioData = () => {
                 <label htmlFor="expectedWeight">
                   Expected weight
                   <select
-                  defaultValue={info?.expectedWeight}
+                    defaultValue={info?.expectedWeight}
                     {...register("expectedWeight", {
                       required: "Expected weight is required",
                     })}
@@ -489,7 +490,7 @@ const EditBioData = () => {
             </div>
           </form>
         </div>
-      </div>
+      </Container>
     </>
   );
 };
