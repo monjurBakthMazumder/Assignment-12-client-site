@@ -6,7 +6,7 @@ const useGetAllData = () => {
   const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
-    axiosPublic.get("/all-data").then((res) => {
+    axiosPublic.get("admin-stat").then((res) => {
       setInfo(res.data);
     });
   }, [axiosPublic]);
