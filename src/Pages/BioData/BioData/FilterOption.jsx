@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
-// import useAxiosPublic from "../../../Hock/useAxiosPublic";
 
-const FilterOption = () => {
-  // const axiosPublic = useAxiosPublic();
+import PropTypes from "prop-types";
+const FilterOption = ({ setFilterOption }) => {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       gender: "",
@@ -25,10 +24,8 @@ const FilterOption = () => {
       presentDivision,
       permanentDivision,
     };
+    setFilterOption(filterOption);
     console.log(filterOption);
-    // await axiosPublic.get("/all-bioData", filterOption).then((res) => {
-    //   console.log("fetch", res);
-    // });
   };
   const handleReset = () => {
     reset();
@@ -43,23 +40,23 @@ const FilterOption = () => {
           <div className="flex flex-col justify-center items-center gap-5 mb-5">
             <div className="flex justify-center items-center gap-1 flex-1 w-full">
               <div className="flex-1 w-full">
-                <label htmlFor="ageTo">
-                  Age to
-                  <input
-                    type="number"
-                    {...register("ageTo")}
-                    placeholder="Age to"
-                    className="py-3 px-4 block w-full border border-pink-200 rounded-md text-sm focus:border-pink-500 focus:ring-pink-500 outline-none mt-2"
-                  />
-                </label>
-              </div>
-              <div className="flex-1 w-full">
                 <label htmlFor="ageFrom">
                   Age from
                   <input
                     type="number"
                     {...register("ageFrom")}
                     placeholder="Age from"
+                    className="py-3 px-4 block w-full border border-pink-200 rounded-md text-sm focus:border-pink-500 focus:ring-pink-500 outline-none mt-2"
+                  />
+                </label>
+              </div>
+              <div className="flex-1 w-full">
+                <label htmlFor="ageTo">
+                  Age to
+                  <input
+                    type="number"
+                    {...register("ageTo")}
+                    placeholder="Age to"
                     className="py-3 px-4 block w-full border border-pink-200 rounded-md text-sm focus:border-pink-500 focus:ring-pink-500 outline-none mt-2"
                   />
                 </label>
@@ -144,4 +141,7 @@ const FilterOption = () => {
   );
 };
 
+FilterOption.propTypes = {
+  setFilterOption: PropTypes.func,
+};
 export default FilterOption;
