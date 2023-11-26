@@ -1,10 +1,12 @@
 import Container from "../../../../Component/Ui/Container";
 import UseAuth from "../../../../Hock/UseAuth";
 import useGetAllData from "../../../../Hock/useGetAllData";
+import Chart from "./Chart";
 
 const AdminDashboard = () => {
   const { user } = UseAuth();
-  const data = useGetAllData();
+  const AllData = useGetAllData();
+  console.log(AllData);
   const {
     totalBiodata,
     totalMaleBiodata,
@@ -12,7 +14,16 @@ const AdminDashboard = () => {
     totalPremiumBiodata,
     totalRevenue,
     totalUser,
-  } = data;
+  } = AllData;
+  const pieChartData = [
+    { name: "Total Biodata", value: totalBiodata },
+    { name: "Total Male Biodata", value: totalMaleBiodata },
+    { name: "Total FemaleBiodata", value: totalFemaleBiodata },
+    { name: "Total Premium Biodata", value: totalPremiumBiodata },
+    { name: "Total Revenue", value: totalRevenue },
+    { name: "Total User", value: totalUser },
+  ];
+  console.log(pieChartData);
   return (
     <Container>
       <h1 className="text-3xl md:text-4xl font-bold mb-10">
@@ -55,6 +66,7 @@ const AdminDashboard = () => {
           <h1 className="text-6xl font-bold text-pink-500">{totalUser}</h1>
         </div>
       </div>
+      <Chart pieChartData={pieChartData} />
     </Container>
   );
 };
