@@ -32,6 +32,7 @@ const BioDataDetailsCard = ({ info }) => {
     expectedHight,
     expectedWeight,
     expectedAge,
+    premium
   } = info;
   const handleAddFavorites = () => {
     const favorites = {
@@ -68,7 +69,7 @@ const BioDataDetailsCard = ({ info }) => {
       <div>
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{name}</h1>
         <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
-          Biodata id: {bioData_id}
+        Biodata id: {bioData_id} {premium ? <i>(premium)</i> : ""}
         </span>
         {isUserPremium && (
           <>

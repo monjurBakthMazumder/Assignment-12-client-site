@@ -8,7 +8,7 @@ const ApprovedPremium = () => {
         <Container>
           <div className="max-w-6xl mx-auto border-2 rounded border-pink-400 px-5 sm:px-10 py-10">
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
-              Total user {allPremiumRequests?.length}
+              Premium request {allPremiumRequests?.length}
             </h1>
             <div className="flex flex-col">
               <div className="-m-1.5 overflow-x-auto">

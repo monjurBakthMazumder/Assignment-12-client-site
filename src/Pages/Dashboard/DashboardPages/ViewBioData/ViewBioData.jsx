@@ -62,7 +62,7 @@ const ViewBioData = () => {
         <div>
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{name}</h1>
           <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
-            Biodata id: {bioData_id}
+            Biodata id: {bioData_id} {premium ? <i>(premium)</i> : ""}
           </span>
 
           <p className="text-sm font-medium flex items-center gap-1 mt-2">
@@ -124,9 +124,7 @@ const ViewBioData = () => {
           </p>
           {premium ||
             (premiumRequest ? (
-              <h1
-                className="w-full my-5  bg-transparent text-pink-600 border border-pink-500 px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2"
-              >
+              <h1 className="w-full my-5  bg-transparent text-pink-600 border border-pink-500 px-2 py-1 sm:px-7 sm:py-3 font-medium text-sm sm:text-lg lg:text-xl flex justify-center items-center gap-2">
                 Your biodata premium request is pending
               </h1>
             ) : (
