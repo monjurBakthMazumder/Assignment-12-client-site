@@ -3,9 +3,9 @@ import useGetFavorite from "../../../../Hock/useGetFavorite";
 import FavoritesBioDataRow from "./FavoritesBioDataRow";
 
 const FavoritesBioData = () => {
-    const favorites = useGetFavorite()
-    return (
-        <Container>
+  const favorites = useGetFavorite();
+  return (
+    <Container>
       <div className="max-w-6xl mx-auto border-2 rounded border-pink-400 px-5 sm:px-10 py-10">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
           My Favorites {favorites?.length}
@@ -61,6 +61,6 @@ const FavoritesBioData = () => {
         </div>
       </div>
     </Container>
-    );
+  );
 };
 export default FavoritesBioData;

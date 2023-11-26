@@ -5,6 +5,7 @@ import useUserIsPremium from "../../Hock/useUserIsPremium";
 import useAxiosSecure from "../../Hock/useAxiosSecure";
 import UseAuth from "../../Hock/UseAuth";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const BioDataDetailsCard = ({ info }) => {
   const isUserPremium = useUserIsPremium();
@@ -135,12 +136,12 @@ const BioDataDetailsCard = ({ info }) => {
         <div className="flex flex-wrap justify-center items-center gap-5 my-5">
           <>
             {isUserPremium || (
-              <button className="flex-1 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium">
+              <Link to={`/biodatas/checkout/${_id}`} className="flex-1 min-w-max text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium text-center">
                 Request Contact Information
-              </button>
+              </Link>
             )}
           </>
-          <button onClick={handleAddFavorites} className="flex-1 text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium">
+          <button onClick={handleAddFavorites} className="flex-1 min-w-max text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium">
             Add to favourites
           </button>
         </div>

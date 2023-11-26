@@ -20,6 +20,7 @@ import ApprovedPremium from "../Pages/Dashboard/DashboardAdminPages/ApprovedPrem
 import ApprovedContactRequest from "../Pages/Dashboard/DashboardAdminPages/ApprovedContactRequest/ApprovedContactRequest";
 import SuccessStory from "../Pages/Dashboard/DashboardAdminPages/SuccessStory/SuccessStory";
 import BioDataDetails from "../Pages/BioDataDetails/BioDataDetails";
+import Checkout from "../Pages/Checkout/Checkout/Checkout";
 
 const Router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const Router = createBrowserRouter([
       {
         path: "/biodatas/details/:id",
         element: <BioDataDetails />,
+      },
+      {
+        path: "/biodatas/checkout/:id",
+        element: <Checkout />,
       },
       {
         path: "/about-us",
