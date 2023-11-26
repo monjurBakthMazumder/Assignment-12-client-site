@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
+import UseAuth from "./UseAuth";
 
 const useGetBiodataDetails = (id) => {
   const [info, setInfo] = useState({});
+  const [requested, setRequested] = useState(false)
   const axiosSecure = useAxiosSecure();
-  console.log(id);
+  const { user } = UseAuth();
+  const email = user?.email;
+  console.log("email", email);
 
   useEffect(() => {
-    axiosSecure.get(`/single-bioData/${id?.id}`).then((res) => {
-      setInfo(res.data);
+    axiosSecure.get(`/single-bioData/${id?.id}?email=${email}`).then((res) => {
+      setInfo(res.data.result);
+      setRequested(res.data.requested);
     });
-  }, [axiosSecure,id]);
-  return info;
+  }, [axiosSecure, id, email]);
+  return {info,requested};
 };
 
 export default useGetBiodataDetails;

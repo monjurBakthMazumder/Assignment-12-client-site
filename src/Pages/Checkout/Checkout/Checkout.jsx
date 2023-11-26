@@ -7,7 +7,8 @@ import Swal from "sweetalert2";
 
 const Checkout = () => {
   const id = useParams();
-  const BioDataInfo = useGetBiodataDetails(id);
+  const {info} = useGetBiodataDetails(id);
+  const BioDataInfo = info
   const userInfo = useGetUserBioData();
   const axiosSecure = useAxiosSecure();
   const handlePayment = (e) => {

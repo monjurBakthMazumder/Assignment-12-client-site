@@ -7,7 +7,7 @@ import UseAuth from "../../Hock/UseAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-const BioDataDetailsCard = ({ info }) => {
+const BioDataDetailsCard = ({ info, requested }) => {
   const isUserPremium = useUserIsPremium();
   const { user } = UseAuth();
   const axiosSecure = useAxiosSecure();
@@ -33,7 +33,7 @@ const BioDataDetailsCard = ({ info }) => {
     expectedHight,
     expectedWeight,
     expectedAge,
-    premium
+    premium,
   } = info;
   const handleAddFavorites = () => {
     const favorites = {
@@ -52,8 +52,7 @@ const BioDataDetailsCard = ({ info }) => {
           text: "Added to favorites successfully",
           icon: "success",
         });
-      }
-      else{
+      } else {
         Swal.fire({
           title: "Already added",
           text: "This biodata already added",
@@ -70,9 +69,9 @@ const BioDataDetailsCard = ({ info }) => {
       <div>
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{name}</h1>
         <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
-        Biodata id: {bioData_id} {premium ? <i>(premium)</i> : ""}
+          Biodata id: {bioData_id} {premium ? <i>(premium)</i> : ""}
         </span>
-        {isUserPremium && (
+        {isUserPremium ? (
           <>
             <p className="text-sm font-medium flex items-center gap-1 mt-2">
               <MdEmail className="text-md text-pink-600" /> Email:
@@ -83,7 +82,22 @@ const BioDataDetailsCard = ({ info }) => {
               {mobile}
             </p>
           </>
+        ) : (
+          requested === "Approved" && (
+            <>
+              <p className="text-sm font-medium flex items-center gap-1 mt-2">
+                <MdEmail className="text-md text-pink-600" /> Email:
+                {email}
+              </p>
+              <p className="text-sm font-medium flex items-center gap-1 mb-1">
+                <FaPhoneSquare className="text-md text-pink-600" /> Phone
+                Number:
+                {mobile}
+              </p>
+            </>
+          )
         )}
+
         <p className="text-lg font-medium">
           <b>Father name:</b> {fatherName}
         </p>
@@ -135,13 +149,31 @@ const BioDataDetailsCard = ({ info }) => {
         </p>
         <div className="flex flex-wrap justify-center items-center gap-5 my-5">
           <>
-            {isUserPremium || (
-              <Link to={`/biodatas/checkout/${_id}`} className="flex-1 min-w-max text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium text-center">
+            {isUserPremium ? (
+              ""
+            ) : requested === "Pending" ? (
+              <button
+                disabled
+                to={`/biodatas/checkout/${_id}`}
+                className="flex-1 min-w-max border border-pink-600  bg-transparent text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium text-center"
+              >
+                Request Contact Information is pending
+              </button>
+            ) : requested === "Approved" ? (
+              ""
+            ) : (
+              <Link
+                to={`/biodatas/checkout/${_id}`}
+                className="flex-1 min-w-max text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium text-center"
+              >
                 Request Contact Information
               </Link>
             )}
           </>
-          <button onClick={handleAddFavorites} className="flex-1 min-w-max text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium">
+          <button
+            onClick={handleAddFavorites}
+            className="flex-1 min-w-max text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium"
+          >
             Add to favourites
           </button>
         </div>
@@ -152,6 +184,7 @@ const BioDataDetailsCard = ({ info }) => {
 
 BioDataDetailsCard.propTypes = {
   info: PropTypes.object,
+  requested: PropTypes.string,
 };
 
 export default BioDataDetailsCard;
