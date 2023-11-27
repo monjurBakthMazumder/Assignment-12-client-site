@@ -7,10 +7,10 @@ import useGetUserBioData from "../../../../Hock/useGetUserBiodata";
 import Container from "../../../../Component/Ui/Container";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Heading from "../../../../Component/Ui/Heading";
+import axios from "axios";
 
 const EditBioData = () => {
   const info = useGetUserBioData();
-  console.log(info);
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
   const {
@@ -40,14 +40,12 @@ const EditBioData = () => {
     },
   });
   const onSubmit = async (data) => {
-    console.log(data);
     const name = data.name;
     const gender = data.gender;
     const fatherName = data.fatherName;
     const motherName = data.motherName;
     const email = user?.email;
     const mobile = data?.mobile;
-    const image = data?.image;
     const age = Number(data.age);
     const dateOfBirth = data.dateOfBirth;
     const hight = data?.hight;
@@ -61,6 +59,22 @@ const EditBioData = () => {
     const expectedAge = Number(data.expectedAge);
     const premium = false;
     const premiumRequest = false;
+
+    // image upload to imgbb and then get an url
+    const imageFile = { image: data.image[0] };
+    console.log("imageFile", imageFile);
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      imageFile,
+      {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      }
+    );
+    const image = res.data.data.display_url;
     const bioDataInfo = {
       name,
       gender,
@@ -81,7 +95,7 @@ const EditBioData = () => {
       expectedHight,
       expectedWeight,
       premium,
-      premiumRequest
+      premiumRequest,
     };
     console.log(bioDataInfo);
     await axiosSecure.put("/bioData", bioDataInfo).then((res) => {
@@ -109,9 +123,7 @@ const EditBioData = () => {
       </Helmet>
       <Container>
         <BorderContainer>
-          <Heading>
-            Edit Biodata
-          </Heading>
+          <Heading>Edit Biodata</Heading>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col md:flex-row justify-center items-center gap-5 mb-5">
               <div className="w-full flex-1">
@@ -216,7 +228,7 @@ const EditBioData = () => {
                 <label htmlFor="image">
                   Image
                   <input
-                    // type="file"
+                    type="file"
                     defaultValue={info?.image}
                     {...register("image", {
                       required: "Image is required",

@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import Container from "../../../../Component/Ui/Container";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Heading from "../../../../Component/Ui/Heading";
+import axios from "axios";
 
 const CreateSuccessPost = () => {
   const axiosSecure = useAxiosSecure();
@@ -26,12 +27,28 @@ const CreateSuccessPost = () => {
   const onSubmit = async (data) => {
     const selfName = data?.yourName;
     const partnerName = data?.yourPartnerName;
-    const coupleImg = data?.coupleImg;
+    // const coupleImg = data?.coupleImg;
     const selfBioId = data?.yourBiodataId;
     const partnerBioId = data?.yourPartnerBiodataId;
     const successStory = data?.successStory;
     const marriageDate = data?.marriageDate;
     const selfEmail = user?.email;
+
+    // image upload to imgbb and then get an url
+    const imageFile = { image: data.coupleImg[0] };
+    console.log("imageFile", imageFile);
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      imageFile,
+      {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      }
+    );
+    const coupleImg = res.data.data.display_url;
     const successInfo = {
       selfName,
       partnerName,
@@ -96,7 +113,7 @@ const CreateSuccessPost = () => {
               <label htmlFor="coupleImg">
                 Couple image
                 <input
-                  // type="file"
+                  type="file"
                   {...register("coupleImg", {
                     required: "Couple image is required",
                   })}
