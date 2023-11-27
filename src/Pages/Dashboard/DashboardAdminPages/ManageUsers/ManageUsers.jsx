@@ -3,6 +3,7 @@ import Container from "../../../../Component/Ui/Container";
 // import useGetAllUser from "../../../../Hock/useGetAllUser";
 import ManageUserRow from "./ManageUserRow";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
+import BorderContainer from "../../../../Component/Ui/BorderContainer";
 
 const ManageUsers = () => {
   // const allUsers = useGetAllUser();
@@ -25,7 +26,7 @@ const ManageUsers = () => {
   };
   return (
     <Container>
-      <div className="max-w-6xl mx-auto border-2 rounded border-pink-400 px-5 sm:px-10 py-10">
+      <BorderContainer>
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
           Total user {allUsers?.length}
         </h1>
@@ -87,7 +88,7 @@ const ManageUsers = () => {
             </div>
           </div>
         </div>
-      </div>
+      </BorderContainer>
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Container from "../../../Component/Ui/Container";
+import BorderContainer from "../../../Component/Ui/BorderContainer";
 
 const ContactUs = () => {
     const {
@@ -19,7 +20,7 @@ const ContactUs = () => {
     };
     return (
         <Container>
-          <div className=" xl:px-8 my-10 md:my-20 border-2 rounded border-pink-400 px-5 sm:px-10 py-10 ">
+          <BorderContainer>
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
               Contact Us
             </h1>
@@ -118,7 +119,7 @@ const ContactUs = () => {
                 Send
               </button>
             </form>
-          </div>
+          </BorderContainer>
         </Container>
     );
 };

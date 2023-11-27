@@ -1,3 +1,4 @@
+import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
 import useGetUserContactRequest from "../../../../Hock/useGetUserContactRequest";
 import MyContactRequestRow from "./MyContactRequestRow";
@@ -6,7 +7,7 @@ const MyContactRequest = () => {
   const contactRequest = useGetUserContactRequest();
   return (
     <Container>
-      <div className="max-w-6xl mx-auto border-2 rounded border-pink-400 px-5 sm:px-10 py-10">
+      <BorderContainer>
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
           My Contact Request {contactRequest?.length}
         </h1>
@@ -65,7 +66,7 @@ const MyContactRequest = () => {
             </div>
           </div>
         </div>
-      </div>
+      </BorderContainer>
     </Container>
   );
 };

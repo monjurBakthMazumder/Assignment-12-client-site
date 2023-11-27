@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import useGetUserBioData from "../../../../Hock/useGetUserBiodata";
 import Container from "../../../../Component/Ui/Container";
+import BorderContainer from "../../../../Component/Ui/BorderContainer";
 
 const EditBioData = () => {
   const info = useGetUserBioData();
@@ -106,7 +107,7 @@ const EditBioData = () => {
         <title>MingleHeart | Edit biodata</title>
       </Helmet>
       <Container>
-        <div className="max-w-6xl mx-auto border-2 rounded border-pink-400 px-5 sm:px-10 py-10">
+        <BorderContainer>
           <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
             Edit Biodata
           </h1>
@@ -491,7 +492,7 @@ const EditBioData = () => {
               </button>
             </div>
           </form>
-        </div>
+        </BorderContainer>
       </Container>
     </>
   );

@@ -1,3 +1,4 @@
+import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
 import useGetAllPremiumRequest from "../../../../Hock/useGetAllPremiumRequest";
 import ApprovedPremiumRow from "./ApprovedPremiumRow";
@@ -6,7 +7,7 @@ const ApprovedPremium = () => {
     const allPremiumRequests = useGetAllPremiumRequest()
     return (
         <Container>
-          <div className="max-w-6xl mx-auto border-2 rounded border-pink-400 px-5 sm:px-10 py-10">
+          <BorderContainer>
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
               Premium request {allPremiumRequests?.length}
             </h1>
@@ -53,7 +54,7 @@ const ApprovedPremium = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </BorderContainer>
         </Container>
     );
 };
