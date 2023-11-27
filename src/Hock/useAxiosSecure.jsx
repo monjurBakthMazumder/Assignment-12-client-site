@@ -14,10 +14,11 @@ const axiosSecure = axios.create({
         (res) => {
           return res;
         },
-        (error) => {
-          if (error.response.status === 401 || error.response.status === 403) {
-            // logoutUser().then(() => {
-            // });
+        async (error) => {
+          const status = error.response.status;
+          if (status === 401 || status === 403) {
+              // await logoutUser();
+              // navigate('/login');
           }
         }
       );
