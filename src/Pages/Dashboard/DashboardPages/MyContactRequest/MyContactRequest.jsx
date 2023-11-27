@@ -45,12 +45,6 @@ const MyContactRequest = () => {
                         scope="col"
                         className="px-6 py-3 text-start text-sm font-semibold text-pink-600 uppercase"
                       >
-                        Transaction Id
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-start text-sm font-semibold text-pink-600 uppercase"
-                      >
                         Status
                       </th>
                       <th
