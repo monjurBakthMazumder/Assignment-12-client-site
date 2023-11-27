@@ -4,6 +4,7 @@ import Container from "../../../../Component/Ui/Container";
 import ManageUserRow from "./ManageUserRow";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
+import Heading from "../../../../Component/Ui/Heading";
 
 const ManageUsers = () => {
   // const allUsers = useGetAllUser();
@@ -27,9 +28,9 @@ const ManageUsers = () => {
   return (
     <Container>
       <BorderContainer>
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
+        <Heading>
           Total user {allUsers?.length}
-        </h1>
+        </Heading>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row justify-center items-center mb-5">
             <input

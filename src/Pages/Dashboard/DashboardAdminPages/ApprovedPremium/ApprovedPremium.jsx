@@ -1,5 +1,6 @@
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
+import Heading from "../../../../Component/Ui/Heading";
 import useGetAllPremiumRequest from "../../../../Hock/useGetAllPremiumRequest";
 import ApprovedPremiumRow from "./ApprovedPremiumRow";
 
@@ -8,9 +9,9 @@ const ApprovedPremium = () => {
     return (
         <Container>
           <BorderContainer>
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
+            <Heading>
               Premium request {allPremiumRequests?.length}
-            </h1>
+            </Heading>
             <div className="flex flex-col">
               <div className="-m-1.5 overflow-x-auto">
                 <div className="p-1.5 min-w-full inline-block align-middle">

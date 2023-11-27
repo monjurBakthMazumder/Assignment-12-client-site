@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import useGetUserBioData from "../../../../Hock/useGetUserBiodata";
 import Container from "../../../../Component/Ui/Container";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
+import Heading from "../../../../Component/Ui/Heading";
 
 const EditBioData = () => {
   const info = useGetUserBioData();
@@ -108,9 +109,9 @@ const EditBioData = () => {
       </Helmet>
       <Container>
         <BorderContainer>
-          <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
+          <Heading>
             Edit Biodata
-          </h1>
+          </Heading>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col md:flex-row justify-center items-center gap-5 mb-5">
               <div className="w-full flex-1">

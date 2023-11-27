@@ -4,6 +4,7 @@ import BioDataCard from "./BioDataCard";
 import Container from "../../../Component/Ui/Container";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../Hock/useAxiosPublic";
+import Heading from "../../../Component/Ui/Heading";
 
 const BioData = () => {
   // const info = useGetAllBioData();
@@ -24,9 +25,9 @@ const BioData = () => {
 
   return (
     <Container>
-      <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold justify-center text-center underline mb-5 block">
+      <Heading>
         All Biodatas: {info?.length}
-      </h1>
+      </Heading>
       <div className="flex flex-col sm:flex-row gap-5">
         <div className="sm:w-60">
           <FilterOption setFilterOption={setFilterOption} />
