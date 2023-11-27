@@ -10,7 +10,7 @@ import {
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase.config";
-import useAxiosSecure from "../Hock/useAxiosSecure";
+import useAxiosPublic from "../Hock/useAxiosPublic";
 
 export const AuthContext = createContext();
 const googleProvider = new GoogleAuthProvider();
@@ -19,7 +19,7 @@ const githubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   // create user
   const createUser = (email, password) => {
@@ -70,9 +70,9 @@ const AuthProvider = ({ children }) => {
       setIsLoading(false);
 
       if (currentUser) {
-        axiosSecure.post("/jwt", loggedUser).then(() => {});
+        axiosPublic.post("/jwt", loggedUser).then(() => {});
       } else {
-        axiosSecure
+        axiosPublic
           .post("/logout", loggedUser, {
             withCredentials: true,
           })
@@ -82,7 +82,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, [user?.email, axiosSecure]);
+  }, [user?.email, axiosPublic]);
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
