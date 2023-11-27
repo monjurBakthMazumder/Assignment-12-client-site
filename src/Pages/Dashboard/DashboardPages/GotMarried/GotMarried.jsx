@@ -30,6 +30,7 @@ const GotMarried = () => {
     const selfBioId = data?.yourBiodataId;
     const partnerBioId = data?.yourPartnerBiodataId;
     const successStory = data?.successStory;
+    const marriageDate = data?.marriageDate;
     const selfEmail = user?.email;
     const successInfo = {
       selfName,
@@ -38,19 +39,20 @@ const GotMarried = () => {
       selfBioId,
       partnerBioId,
       successStory,
+      marriageDate,
       selfEmail,
     };
     console.log(successInfo);
-      await axiosSecure.post("/success-story", successInfo).then((res) => {
-        console.log("fetch", res);
-        if (res.status === 200) {
-          Swal.fire({
-            title: "Success story added",
-            text: "Your success story added successfully",
-            icon: "success",
-          });
-        }
-      });
+    await axiosSecure.post("/success-story", successInfo).then((res) => {
+      console.log("fetch", res);
+      if (res.status === 200) {
+        Swal.fire({
+          title: "Success story added",
+          text: "Your success story added successfully",
+          icon: "success",
+        });
+      }
+    });
   };
   return (
     <Container>
@@ -107,10 +109,28 @@ const GotMarried = () => {
               </p>
             </div>
             <div className="w-full flex-1">
+              <label htmlFor="marriageDate">
+                Marriage date
+                <input
+                  type="date"
+                  {...register("marriageDate", {
+                    required: "Marriage date is required",
+                  })}
+                  placeholder="Marriage date"
+                  className="py-3 px-4 block w-full border border-pink-200 rounded-md text-sm focus:border-pink-500 focus:ring-pink-500 outline-none mt-2"
+                />
+              </label>
+              <p className="text-xs text-red-600 mt-1">
+                {errors.marriageDate?.message}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-5 mb-5">
+            <div className="w-full flex-1">
               <label htmlFor="yourBiodataId">
                 Your biodata id
                 <input
-                type="number"
+                  type="number"
                   {...register("yourBiodataId", {
                     required: "Your biodata id is required",
                   })}
@@ -126,7 +146,7 @@ const GotMarried = () => {
               <label htmlFor="yourPartnerBiodataId">
                 Your partner biodata id
                 <input
-                type="number"
+                  type="number"
                   {...register("yourPartnerBiodataId", {
                     required: "Your partner biodata id is required",
                   })}
