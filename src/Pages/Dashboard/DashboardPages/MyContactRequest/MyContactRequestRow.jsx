@@ -6,7 +6,8 @@ import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const MyContactRequestRow = ({ item }) => {
-  const { _id, bioName, bioId, bioData_Id, bioEmail, bioMobile, status } =
+  console.log(item);
+  const { _id, bioName, bioId, bioData_Id, bioEmail, bioMobile, status, transactionId } =
     item || {};
     
   const axiosSecure = useAxiosSecure();
@@ -46,6 +47,9 @@ const MyContactRequestRow = ({ item }) => {
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">
         {status === "Pending" ? "---" : bioMobile}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">
+        {transactionId}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">
         {status}

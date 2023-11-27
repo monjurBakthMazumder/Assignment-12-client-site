@@ -3,7 +3,7 @@ import useGetUserContactRequest from "../../../../Hock/useGetUserContactRequest"
 import MyContactRequestRow from "./MyContactRequestRow";
 
 const MyContactRequest = () => {
-    const contactRequest = useGetUserContactRequest()
+  const contactRequest = useGetUserContactRequest();
   return (
     <Container>
       <div className="max-w-6xl mx-auto border-2 rounded border-pink-400 px-5 sm:px-10 py-10">
@@ -40,6 +40,12 @@ const MyContactRequest = () => {
                         className="px-6 py-3 text-start text-sm font-semibold text-pink-600 uppercase"
                       >
                         Phone number
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-start text-sm font-semibold text-pink-600 uppercase"
+                      >
+                        Transaction Id
                       </th>
                       <th
                         scope="col"
