@@ -14,7 +14,7 @@ const AdminDashboard = () => {
     totalFemaleBiodata,
     totalPremiumBiodata,
     totalRevenue,
-    totalUser,
+    // totalUser,
   } = AllData;
   const pieChartData = [
     { name: "Total Biodata", value: totalBiodata },
@@ -22,7 +22,7 @@ const AdminDashboard = () => {
     { name: "Total FemaleBiodata", value: totalFemaleBiodata },
     { name: "Total Premium Biodata", value: totalPremiumBiodata },
     { name: "Total Revenue", value: totalRevenue },
-    { name: "Total User", value: totalUser },
+    // { name: "Total User", value: totalUser },
   ];
   console.log(pieChartData);
   return (
@@ -63,10 +63,10 @@ const AdminDashboard = () => {
             </h1>
             <h1 className="text-xl font-bold">Total revenue</h1>
           </div>
-          <div className="border border-pink-500 rounded text-center p-5 md:p-10">
+          {/* <div className="border border-pink-500 rounded text-center p-5 md:p-10">
             <h1 className="text-6xl font-bold text-pink-500">{totalUser}</h1>
             <h1 className="text-xl font-bold">Total User</h1>
-          </div>
+          </div> */}
         </div>
         <Chart pieChartData={pieChartData} />
       </BorderLessContainer>
