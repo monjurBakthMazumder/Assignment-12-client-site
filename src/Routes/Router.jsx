@@ -21,6 +21,7 @@ import ApprovedContactRequest from "../Pages/Dashboard/DashboardAdminPages/Appro
 import SuccessStory from "../Pages/Dashboard/DashboardAdminPages/SuccessStory/SuccessStory";
 import BioDataDetails from "../Pages/BioDataDetails/BioDataDetails";
 import Checkout from "../Pages/Checkout/Checkout/Checkout";
+import AdminRoute from "./AdminRoute";
 
 const Router = createBrowserRouter([
   {
@@ -38,11 +39,19 @@ const Router = createBrowserRouter([
       },
       {
         path: "/biodatas/details/:id",
-        element: <BioDataDetails />,
+        element: (
+          <PrivateRoute>
+            <BioDataDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/biodatas/checkout/:id",
-        element: <Checkout />,
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/about-us",
@@ -71,20 +80,21 @@ const Router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
     children: [
-       // normal user routes
-      {
-        path: "/dashboard/edit-bioData",
-        element: (
-          <PrivateRoute>
-            <EditBioData />
-          </PrivateRoute>
-        )
-      },
+      // normal user routes
+      
       {
         path: "/dashboard/view-bioData",
         element: (
           <PrivateRoute>
             <ViewBioData />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/edit-bioData",
+        element: (
+          <PrivateRoute>
+            <EditBioData />
           </PrivateRoute>
         ),
       },
@@ -114,24 +124,54 @@ const Router = createBrowserRouter([
       },
       // admin only routes
       {
-        path: '/dashboard/admin',
-        element: <AdminDashboard/>
+        path: "/dashboard/admin",
+        element: (
+          <AdminRoute>
+            <PrivateRoute>
+              <AdminDashboard />
+            </PrivateRoute>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/menage-users',
-        element: <ManageUsers/>
+        path: "/dashboard/menage-users",
+        element: (
+          <AdminRoute>
+            <PrivateRoute>
+              <ManageUsers />
+            </PrivateRoute>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/approved-premium',
-        element: <ApprovedPremium/>
+        path: "/dashboard/approved-premium",
+        element: (
+          <AdminRoute>
+            <PrivateRoute>
+              <ApprovedPremium />
+            </PrivateRoute>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/approved-contact-request',
-        element: <ApprovedContactRequest/>
+        path: "/dashboard/approved-contact-request",
+        element: (
+          <AdminRoute>
+            <PrivateRoute>
+              <ApprovedContactRequest />
+            </PrivateRoute>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/success-story',
-        element: <SuccessStory/>
+        path: "/dashboard/success-story",
+        element: (
+          <AdminRoute>
+            <PrivateRoute>
+              <SuccessStory />
+            </PrivateRoute>
+          </AdminRoute>
+        ),
       },
     ],
   },

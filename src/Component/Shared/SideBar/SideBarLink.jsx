@@ -3,8 +3,10 @@ import UseAuth from "../../../Hock/UseAuth";
 import Swal from "sweetalert2";
 import SideBarUserLink from "./SideBarUserLink";
 import SideBarAdminLink from "./SideBarAdminLink";
+import useAdmin from "../../../Hock/useAdmin";
 
 const SideBarLink = () => {
+  const [isAdmin] = useAdmin();
   const navigate = useNavigate();
   const handleNavigateToHome = () => {
     navigate("/");
@@ -41,23 +43,13 @@ const SideBarLink = () => {
         data-hs-accordion-always-open
       >
         <ul className="space-y-1.5">
-          <SideBarUserLink />
-          <li>dafsdfg</li>
-          <SideBarAdminLink/>
+          {isAdmin ? <SideBarAdminLink /> : <SideBarUserLink />}
           <li>
             <h1
               onClick={handleLogOut}
               className="text-lg font-medium block border rounded px-2 py-1 text-pink-600 border-pink-600 cursor-pointer"
             >
               Logout
-            </h1>
-          </li>
-          <li>
-            <h1
-              onClick={handleNavigateToHome}
-              className="text-lg font-medium block border rounded px-2 py-1 text-pink-600 border-pink-600 cursor-pointer"
-            >
-              Home
             </h1>
           </li>
         </ul>
