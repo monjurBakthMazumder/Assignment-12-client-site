@@ -1,12 +1,12 @@
-import useGetUserBioData from "../../../../Hock/useGetUserBiodata";
 import { FaPhoneSquare } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import Container from "../../../../Component/Ui/Container";
 import BorderLessContainer from "../../../../Component/Ui/BorderLessContainer";
+import useGetUserBioData from "../../../../Hock/useGetUserBioData";
 const ViewBioData = () => {
-  const info = useGetUserBioData();
+  const {info} = useGetUserBioData();
   const axiosSecure = useAxiosSecure();
   const {
     _id,

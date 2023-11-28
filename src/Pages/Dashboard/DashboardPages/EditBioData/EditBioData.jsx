@@ -3,16 +3,36 @@ import UseAuth from "../../../../Hock/UseAuth";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
-import useGetUserBioData from "../../../../Hock/useGetUserBiodata";
 import Container from "../../../../Component/Ui/Container";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Heading from "../../../../Component/Ui/Heading";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 const EditBioData = () => {
-  const info = useGetUserBioData();
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
+
+  // const {
+  //   data: info = {},
+  //   isPending,
+  //   refetch
+  // } = useQuery({
+  //   queryKey: ["bioData", user?.email],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get(`/bioData/${user?.email}`);
+  //     return res.data;
+  //   },
+  // });
+
+  const [info, setInfo] = useState({});
+  useEffect(() => {
+    axiosSecure.get(`/bioData/${user?.email}`).then((res) => {
+      setInfo(res.data);
+    });
+  }, [axiosSecure, user?.email]);
+
   const {
     register,
     handleSubmit,

@@ -5,17 +5,17 @@ import UseAuth from "../../../Hock/UseAuth";
 import Container from "../../../Component/Ui/Container";
 import { useParams } from "react-router-dom";
 import useGetBiodataDetails from "../../../Hock/useGetBiodataDetails";
-import useGetUserBioData from "../../../Hock/useGetUserBiodata";
 import Swal from "sweetalert2";
+import useGetUserBioData from "../../../Hock/useGetUserBioData";
 
 const CheckoutForm = () => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const id = useParams();
-  const { info } = useGetBiodataDetails(id);
-  const BioDataInfo = info;
-  const userInfo = useGetUserBioData();
+  const { info2 } = useGetBiodataDetails(id);
+  const BioDataInfo = info2;
+  const { info } = useGetUserBioData();
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
@@ -75,14 +75,14 @@ const CheckoutForm = () => {
 
         e.preventDefault();
         const paymentInfo = {
-          transactionId:paymentIntent.id,
+          transactionId: paymentIntent.id,
           bioData_Id: BioDataInfo?._id,
           bioId: BioDataInfo?.bioData_id,
           bioName: BioDataInfo?.name,
           bioEmail: BioDataInfo?.email,
           bioMobile: BioDataInfo?.mobile,
-          selfBioId: userInfo?.bioData_id,
-          selfEmail: userInfo?.email,
+          selfBioId: info?.bioData_id,
+          selfEmail: info?.email,
           status: "Pending",
           price: 500,
         };
@@ -126,7 +126,7 @@ const CheckoutForm = () => {
                 <input
                   disabled
                   readOnly
-                  value={userInfo?.bioData_id}
+                  value={info?.bioData_id}
                   placeholder="Self biodata id"
                   className="py-3 px-4 block w-full border border-pink-300 rounded-md text-sm focus:border-pink-500 focus:ring-pink-500 outline-none mt-2"
                 />
@@ -140,7 +140,7 @@ const CheckoutForm = () => {
                 <input
                   disabled
                   readOnly
-                  value={userInfo?.email}
+                  value={info?.email}
                   placeholder="Your Email"
                   className="py-3 px-4 block w-full border border-pink-300 rounded-md text-sm focus:border-pink-500 focus:ring-pink-500 outline-none mt-2"
                 />

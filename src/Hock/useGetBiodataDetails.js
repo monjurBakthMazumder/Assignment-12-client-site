@@ -3,7 +3,7 @@ import useAxiosSecure from "./useAxiosSecure";
 import UseAuth from "./UseAuth";
 
 const useGetBiodataDetails = (id) => {
-  const [info, setInfo] = useState({});
+  const [info2, setInfo] = useState({});
   const [requested, setRequested] = useState(false)
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
@@ -16,7 +16,7 @@ const useGetBiodataDetails = (id) => {
       setRequested(res.data.requested);
     });
   }, [axiosSecure, id, email]);
-  return {info,requested};
+  return {info2,requested};
 };
 
 export default useGetBiodataDetails;
