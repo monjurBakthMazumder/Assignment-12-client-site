@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetAllStart = () => {
-  const [info, setInfo] = useState({});
   const axiosPublic = useAxiosPublic();
-
-  useEffect(() => {
-    axiosPublic.get("/stat").then((res) => {
-      setInfo(res.data);
-    });
-  }, [axiosPublic]);
-  return info;
+  const {
+    data: stat = {},
+    isPending: isPendingStat,
+    refetch: refetchStat,
+  } = useQuery({
+    queryKey: ["stat"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/stat");
+      return res.data;
+    },
+  });
+  return { stat, isPendingStat, refetchStat };
 };
 
 export default useGetAllStart;

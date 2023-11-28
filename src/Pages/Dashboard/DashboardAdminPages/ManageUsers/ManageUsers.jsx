@@ -7,8 +7,6 @@ import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Heading from "../../../../Component/Ui/Heading";
 
 const ManageUsers = () => {
-  // const allUsers = useGetAllUser();
-
   const [allUsers, setAllUsers] = useState([]);
   const axiosSecure = useAxiosSecure();
 
@@ -28,9 +26,7 @@ const ManageUsers = () => {
   return (
     <Container>
       <BorderContainer>
-        <Heading>
-          Total user {allUsers?.length}
-        </Heading>
+        <Heading>Total user {allUsers?.length}</Heading>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row justify-center items-center mb-5">
             <input

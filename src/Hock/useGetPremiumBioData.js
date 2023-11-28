@@ -5,7 +5,7 @@ const useGetPremiumBioData = () => {
   const axiosPublic = useAxiosPublic();
 
   const {
-    data: premiumBioData,
+    data: premiumBioData = [],
     isPending: isPendingPremiumBioData,
     refetch: refetchPremiumBioData,
   } = useQuery({
