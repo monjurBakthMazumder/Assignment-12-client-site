@@ -5,7 +5,7 @@ import useGetContactRequest from "../../../../Hock/useGetContactRequest";
 import ApprovedContactRequestRow from "./ApprovedContactRequestRow";
 
 const ApprovedContactRequest = () => {
-    const allContactRequest = useGetContactRequest()
+    const {allContactRequest} = useGetContactRequest()
     return (
         <Container>
           <BorderContainer>

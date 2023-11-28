@@ -1,20 +1,24 @@
-
-
-
-
-import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetContactRequest = () => {
-  const [info, setInfo] = useState([]);
   const axiosSecure = useAxiosSecure();
-
-  useEffect(() => {
-    axiosSecure.get(`/contact-request`).then((res) => {
-      setInfo(res.data);
-    });
-  }, [axiosSecure]);
-  return info;
+  const {
+    data: allContactRequest = [],
+    isPending: isPendingAllContactRequest,
+    refetch: refetchAllContactRequest,
+  } = useQuery({
+    queryKey: ["contact-request"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/contact-request`);
+      return res.data;
+    },
+  });
+  return {
+    allContactRequest,
+    isPendingAllContactRequest,
+    refetchAllContactRequest,
+  };
 };
 
 export default useGetContactRequest;

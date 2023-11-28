@@ -1,3 +1,4 @@
+import Loading from "../../../../Component/Loading/Loading";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
 import Heading from "../../../../Component/Ui/Heading";
@@ -5,13 +6,16 @@ import useGetAllPremiumRequest from "../../../../Hock/useGetAllPremiumRequest";
 import ApprovedPremiumRow from "./ApprovedPremiumRow";
 
 const ApprovedPremium = () => {
-    const allPremiumRequests = useGetAllPremiumRequest()
-    return (
+  const { allPremiumRequests, isPendingAllPremiumRequests } =
+    useGetAllPremiumRequest();
+  return (
+    <>
+      {isPendingAllPremiumRequests ? (
+        <Loading />
+      ) : (
         <Container>
           <BorderContainer>
-            <Heading>
-              Premium request {allPremiumRequests?.length}
-            </Heading>
+            <Heading>Premium request {allPremiumRequests?.length}</Heading>
             <div className="flex flex-col">
               <div className="-m-1.5 overflow-x-auto">
                 <div className="p-1.5 min-w-full inline-block align-middle">
@@ -57,7 +61,9 @@ const ApprovedPremium = () => {
             </div>
           </BorderContainer>
         </Container>
-    );
+      )}
+    </>
+  );
 };
 
 export default ApprovedPremium;
