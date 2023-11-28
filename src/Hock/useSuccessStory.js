@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const useSuccessStory = () => {
-  const [info, setInfo] = useState([]);
   const axiosPublic = useAxiosPublic();
-
-  useEffect(() => {
-    axiosPublic.get("/success-story").then((res) => {
-      setInfo(res.data);
-      console.log("object successStory" , res.data);
-    });
-  }, [axiosPublic]);
-  return info;
+  const {
+    data: successStory = [],
+    isPending: isPendingSuccessStory,
+    refetch: refetchSuccessStory,
+  } = useQuery({
+    queryKey: ["success-story"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/success-story");
+      return res.data;
+    },
+  });
+  return { successStory, isPendingSuccessStory, refetchSuccessStory };
 };
 
 export default useSuccessStory;
