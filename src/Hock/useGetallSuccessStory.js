@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetallSuccessStory = () => {
-  const [info, setInfo] = useState([]);
   const axiosSecure = useAxiosSecure();
-
-  useEffect(() => {
-    axiosSecure.get(`/all-success-story`).then((res) => {
-      setInfo(res.data);
-    });
-  }, [axiosSecure]);
-  return info;
+  const {
+    data: successStory = [],
+    isPending: isPendingSuccessStory,
+    refetch: refetchSuccessStory,
+  } = useQuery({
+    queryKey: ["all-success-story"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/all-success-story");
+      return res.data;
+    },
+  });
+  return { successStory, isPendingSuccessStory, refetchSuccessStory };
 };
 
 export default useGetallSuccessStory;

@@ -1,17 +1,22 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetSimilarBiodata = (gender) => {
-  const [info, setInfo] = useState([]);
   const axiosSecure = useAxiosSecure();
   console.log(gender);
 
-  useEffect(() => {
-    axiosSecure.get(`/similar-bioData/${gender}`).then((res) => {
-      setInfo(res.data);
-    });
-  }, [axiosSecure,gender]);
-  return info;
+  const {
+    data: similarBiodata = [],
+    isPending: isPendingSimilarBiodata,
+    refetch: refetchSimilarBiodata,
+  } = useQuery({
+    queryKey: ["similar-bioData", gender],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/similar-bioData/${gender}`);
+      return res.data;
+    },
+  });
+  return { similarBiodata, isPendingSimilarBiodata, refetchSimilarBiodata };
 };
 
 export default useGetSimilarBiodata;

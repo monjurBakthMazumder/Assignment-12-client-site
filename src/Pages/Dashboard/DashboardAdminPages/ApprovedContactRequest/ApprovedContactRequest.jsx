@@ -1,3 +1,4 @@
+import Loading from "../../../../Component/Loading/Loading";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
 import Heading from "../../../../Component/Ui/Heading";
@@ -5,13 +6,16 @@ import useGetContactRequest from "../../../../Hock/useGetContactRequest";
 import ApprovedContactRequestRow from "./ApprovedContactRequestRow";
 
 const ApprovedContactRequest = () => {
-    const {allContactRequest} = useGetContactRequest()
-    return (
+  const { allContactRequest, isPendingAllContactRequest } =
+    useGetContactRequest();
+  return (
+    <>
+      {isPendingAllContactRequest ? (
+        <Loading />
+      ) : (
         <Container>
           <BorderContainer>
-            <Heading>
-              Contact request {allContactRequest?.length}
-            </Heading>
+            <Heading>Contact request {allContactRequest?.length}</Heading>
             <div className="flex flex-col">
               <div className="-m-1.5 overflow-x-auto">
                 <div className="p-1.5 min-w-full inline-block align-middle">
@@ -47,7 +51,10 @@ const ApprovedContactRequest = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {allContactRequest?.map((item) => (
-                          <ApprovedContactRequestRow key={item._id} item={item} />
+                          <ApprovedContactRequestRow
+                            key={item._id}
+                            item={item}
+                          />
                         ))}
                       </tbody>
                     </table>
@@ -57,7 +64,9 @@ const ApprovedContactRequest = () => {
             </div>
           </BorderContainer>
         </Container>
-    );
+      )}
+    </>
+  );
 };
 
 export default ApprovedContactRequest;

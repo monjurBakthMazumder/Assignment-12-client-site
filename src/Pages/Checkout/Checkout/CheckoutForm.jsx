@@ -14,13 +14,13 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const id = useParams();
-  const { info2 } = useGetBiodataDetails(id);
+  const { info2, isPendingSuccessStory } = useGetBiodataDetails(id);
   const BioDataInfo = info2;
   const { info, isPendingInfo } = useGetUserBioData();
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  const { user } = UseAuth();
+  const { user ,isLoading } = UseAuth();
 
   useEffect(() => {
     axiosSecure.post("/create-payment-intent", { price: 500 }).then((res) => {
@@ -102,7 +102,7 @@ const CheckoutForm = () => {
 
   return (
     <>
-      {isPendingInfo ? (
+      {isPendingInfo || isPendingSuccessStory || isLoading ? (
         <Loading />
       ) : (
         <Container>

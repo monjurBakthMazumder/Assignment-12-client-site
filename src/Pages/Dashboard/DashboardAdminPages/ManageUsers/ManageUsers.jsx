@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Container from "../../../../Component/Ui/Container";
-// import useGetAllUser from "../../../../Hock/useGetAllUser";
 import ManageUserRow from "./ManageUserRow";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
@@ -9,15 +8,9 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../../Component/Loading/Loading";
 
 const ManageUsers = () => {
-  // const [allUsers, setAllUsers] = useState([]);
   const axiosSecure = useAxiosSecure();
   const [name, setName] = useState("");
 
-  // useEffect(() => {
-  //   axiosSecure.get(`/users`).then((res) => {
-  //     setAllUsers(res.data);
-  //   });
-  // }, [axiosSecure]);
   const {
     data: allUsers = [],
     isPending,

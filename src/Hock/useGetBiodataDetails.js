@@ -1,22 +1,27 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
 import UseAuth from "./UseAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetBiodataDetails = (id) => {
-  const [info2, setInfo] = useState({});
-  const [requested, setRequested] = useState(false)
   const axiosSecure = useAxiosSecure();
-  const { user } = UseAuth();
-  const email = user?.email;
-  console.log("email", email);
+  const { user, isLoading } = UseAuth();
 
-  useEffect(() => {
-    axiosSecure.get(`/single-bioData/${id?.id}?email=${email}`).then((res) => {
-      setInfo(res.data.result);
-      setRequested(res.data.requested);
-    });
-  }, [axiosSecure, id, email]);
-  return {info2,requested};
+  const {
+    data: successStory = {},
+    isPending: isPendingSuccessStory,
+    refetch: refetchSuccessStory,
+  } = useQuery({
+    queryKey: ["single-bioData", id?.id, user?.email],
+    enabled: !isLoading,
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/single-bioData/${id?.id}?email=${user?.email}`
+      );
+      return res.data;
+    },
+  });
+
+  return { successStory, isPendingSuccessStory, refetchSuccessStory };
 };
 
 export default useGetBiodataDetails;
