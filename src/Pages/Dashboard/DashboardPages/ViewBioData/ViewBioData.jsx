@@ -5,8 +5,9 @@ import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import Container from "../../../../Component/Ui/Container";
 import BorderLessContainer from "../../../../Component/Ui/BorderLessContainer";
 import useGetUserBioData from "../../../../Hock/useGetUserBioData";
+import Loading from "../../../../Component/Loading/Loading";
 const ViewBioData = () => {
-  const {info} = useGetUserBioData();
+  const {info, isPendingInfo} = useGetUserBioData();
   const axiosSecure = useAxiosSecure();
   const {
     _id,
@@ -56,7 +57,14 @@ const ViewBioData = () => {
     });
   };
   return (
-    <Container>
+    <>
+    
+    {
+      isPendingInfo 
+      ?
+      <Loading/>
+      :
+      <Container>
       <BorderLessContainer>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <div className="w-full h-fit">
@@ -143,7 +151,8 @@ const ViewBioData = () => {
           </div>
         </div>
       </BorderLessContainer>
-    </Container>
+    </Container>}
+    </>
   );
 };
 
