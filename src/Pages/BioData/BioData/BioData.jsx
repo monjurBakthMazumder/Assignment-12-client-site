@@ -1,4 +1,3 @@
-// import useGetAllBioData from "../../../Hock/useGetAllBioData";
 import FilterOption from "./filterOption";
 import BioDataCard from "./BioDataCard";
 import Container from "../../../Component/Ui/Container";
@@ -7,7 +6,6 @@ import useAxiosPublic from "../../../Hock/useAxiosPublic";
 import Heading from "../../../Component/Ui/Heading";
 
 const BioData = () => {
-  // const info = useGetAllBioData();
 
   const [info, setInfo] = useState([]);
   const axiosPublic = useAxiosPublic();
