@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetAllData = () => {
-  const [info, setInfo] = useState([]);
   const axiosSecure = useAxiosSecure();
-
-  useEffect(() => {
-    axiosSecure.get("/admin-stat").then((res) => {
-      setInfo(res.data);
-    });
-  }, [axiosSecure]);
-  return info;
+  const {
+    data: AllData = [],
+    isPending: isPendingAllData,
+    refetch: refetchAllData,
+  } = useQuery({
+    queryKey: ["admin-stat"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/admin-stat`);
+      return res.data;
+    },
+  });
+  return { AllData, isPendingAllData, refetchAllData };
 };
 
 export default useGetAllData;

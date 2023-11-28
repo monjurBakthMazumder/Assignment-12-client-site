@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
 import UseAuth from "./UseAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetUserContactRequest = () => {
-  const [info, setInfo] = useState([]);
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
-
-  useEffect(() => {
-    const userEmail = user?.email;
-    axiosSecure.get(`/user-contact-request/${userEmail}`).then((res) => {
-      setInfo(res.data);
-    });
-  }, [axiosSecure, user?.email]);
-  return info;
+  const {
+    data: contactRequest = [],
+    isPending: isPendingContactRequest,
+    refetch: refetchContactRequest,
+  } = useQuery({
+    queryKey: ["user-contact-request", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/user-contact-request/${user?.email}`);
+      return res.data;
+    },
+  });
+  return { contactRequest, isPendingContactRequest, refetchContactRequest };
 };
 
 export default useGetUserContactRequest;

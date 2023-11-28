@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
 import UseAuth from "./UseAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetFavorite = () => {
-    const [info, setInfo] = useState([]);
-    const axiosSecure = useAxiosSecure();
-    const { user } = UseAuth();
-  
-    useEffect(() => {
-      const userEmail = user?.email;
-      axiosSecure.get(`/user-favorites/${userEmail}`).then((res) => {
-        setInfo(res.data);
-      });
-    }, [axiosSecure, user?.email]);
-    return info;
-  };
+  const axiosSecure = useAxiosSecure();
+  const { user } = UseAuth();
+  const {
+    data: favorites = [],
+    isPending: isPendingFavorites,
+    refetch: refetchFavorites,
+  } = useQuery({
+    queryKey: ["user-favorites", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/user-favorites/${user?.email}`);
+      return res.data;
+    },
+  });
+  return { favorites, isPendingFavorites, refetchFavorites };
+};
 
 export default useGetFavorite;
