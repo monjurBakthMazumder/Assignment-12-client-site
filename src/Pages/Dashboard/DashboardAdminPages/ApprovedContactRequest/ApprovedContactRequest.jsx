@@ -6,7 +6,7 @@ import useGetContactRequest from "../../../../Hock/useGetContactRequest";
 import ApprovedContactRequestRow from "./ApprovedContactRequestRow";
 
 const ApprovedContactRequest = () => {
-  const { allContactRequest, isPendingAllContactRequest } =
+  const { allContactRequest, isPendingAllContactRequest,refetchAllContactRequest } =
     useGetContactRequest();
   return (
     <>
@@ -54,6 +54,7 @@ const ApprovedContactRequest = () => {
                           <ApprovedContactRequestRow
                             key={item._id}
                             item={item}
+                            refetchAllContactRequest={refetchAllContactRequest}
                           />
                         ))}
                       </tbody>

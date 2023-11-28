@@ -6,7 +6,7 @@ import useGetUserContactRequest from "../../../../Hock/useGetUserContactRequest"
 import MyContactRequestRow from "./MyContactRequestRow";
 
 const MyContactRequest = () => {
-  const { contactRequest, isPendingContactRequest } =
+  const { contactRequest, isPendingContactRequest,refetchContactRequest } =
     useGetUserContactRequest();
   return (
     <>
@@ -63,7 +63,7 @@ const MyContactRequest = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {contactRequest?.map((item) => (
-                          <MyContactRequestRow key={item._id} item={item} />
+                          <MyContactRequestRow key={item._id} item={item} refetchContactRequest={refetchContactRequest}/>
                         ))}
                       </tbody>
                     </table>

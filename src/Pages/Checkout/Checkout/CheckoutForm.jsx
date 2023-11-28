@@ -3,11 +3,8 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hock/useAxiosSecure";
 import UseAuth from "../../../Hock/UseAuth";
 import Container from "../../../Component/Ui/Container";
-import { useParams } from "react-router-dom";
-// import useGetBiodataDetails from "../../../Hock/useGetBiodataDetails";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-// import useGetUserBioData from "../../../Hock/useGetUserBioData";
-// import Loading from "../../../Component/Loading/Loading";
 import useGetBiodataDetails2 from "../../../Hock/useGetBiodataDetails2";
 import useGetUserBioData2 from "../../../Hock/useGetUserBioData2";
 
@@ -23,6 +20,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
+  const navigate = useNavigate()
 
   useEffect(() => {
     axiosSecure.post("/create-payment-intent", { price: 500 }).then((res) => {
@@ -91,6 +89,7 @@ const CheckoutForm = () => {
         };
         axiosSecure.post(`/payments`, paymentInfo).then((res) => {
           if (res.status === 200) {
+            navigate(`/dashboard/my-contact-request`)
             Swal.fire({
               title: "Payment successful!!",
               text: "Tk 500 has been successfully paid",

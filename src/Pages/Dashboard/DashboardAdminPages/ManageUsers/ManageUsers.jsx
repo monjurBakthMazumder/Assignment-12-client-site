@@ -84,7 +84,7 @@ const ManageUsers = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {allUsers?.map((item) => (
-                          <ManageUserRow key={item._id} item={item} />
+                          <ManageUserRow key={item._id} item={item} refetch={refetch}/>
                         ))}
                       </tbody>
                     </table>

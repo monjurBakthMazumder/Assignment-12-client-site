@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import useAxiosSecure from '../../../../Hock/useAxiosSecure';
 import Swal from 'sweetalert2';
 
-const ApprovedContactRequestRow = ({item}) => {
+const ApprovedContactRequestRow = ({item,refetchAllContactRequest}) => {
     const {_id, bioName, bioEmail, bioId } = item || {};
     
   const axiosSecure = useAxiosSecure();
@@ -21,6 +21,7 @@ const ApprovedContactRequestRow = ({item}) => {
           .put(`/approved-contact-request/${_id}`)
           .then((res) => {
             if (res.status === 200) {
+              refetchAllContactRequest()
               Swal.fire({
                 title: "Premium user successful",
                 text: "This biodata is premium from now",
@@ -55,7 +56,8 @@ const ApprovedContactRequestRow = ({item}) => {
 };
 
 ApprovedContactRequestRow.propTypes = {
-    item: PropTypes.object
+    item: PropTypes.object,
+    refetchAllContactRequest: PropTypes.func,
 };
 
 export default ApprovedContactRequestRow;

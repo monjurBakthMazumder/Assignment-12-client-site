@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import Swal from "sweetalert2";
 
-const MyContactRequestRow = ({ item }) => {
+const MyContactRequestRow = ({ item,refetchContactRequest }) => {
   console.log(item);
   const { _id, bioName, bioId, bioData_Id, bioEmail, bioMobile, status } =
     item || {};
@@ -24,6 +24,7 @@ const MyContactRequestRow = ({ item }) => {
           if (result.isConfirmed) {
             axiosSecure.delete(`/delete-contact-request/${_id}`).then((res) => {
               if (res.status === 200) {
+                refetchContactRequest()
                 Swal.fire({
                   title: "Deleted!",
                   text: "Your file has been deleted.",
@@ -66,6 +67,7 @@ const MyContactRequestRow = ({ item }) => {
 
 MyContactRequestRow.propTypes = {
   item: PropTypes.object,
+  refetchContactRequest: PropTypes.func,
 };
 
 export default MyContactRequestRow;

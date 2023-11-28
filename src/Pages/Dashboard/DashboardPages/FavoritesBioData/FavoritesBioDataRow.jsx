@@ -4,7 +4,7 @@ import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
-const FavoritesBioDataRow = ({ item }) => {
+const FavoritesBioDataRow = ({ item,refetchFavorites }) => {
   const { _id, name, bioData_id, permanentDivision, occupation, dataId } =
     item || {};
   const axiosSecure = useAxiosSecure();
@@ -21,6 +21,7 @@ const FavoritesBioDataRow = ({ item }) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/delete-favorites/${_id}`).then((res) => {
           if (res.status === 200) {
+            refetchFavorites()
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
@@ -60,6 +61,7 @@ const FavoritesBioDataRow = ({ item }) => {
 
 FavoritesBioDataRow.propTypes = {
   item: PropTypes.object,
+  refetchFavorites: PropTypes.func,
 };
 
 export default FavoritesBioDataRow;

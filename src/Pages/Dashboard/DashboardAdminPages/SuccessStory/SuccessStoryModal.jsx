@@ -48,7 +48,7 @@ const SuccessStoryModal = ({ item }) => {
                 data-hs-overlay="#hs-sign-out-alert"
                 className="py-2 px-5 inline-flex justify-center items-center gap-2 rounded font-semibold border border-pink-600 bg-transparent text-pink-500 hover:bg-pink-600 hover:text-white"
               >
-                Details
+                Cancel
               </button>
             </div>
           </div>

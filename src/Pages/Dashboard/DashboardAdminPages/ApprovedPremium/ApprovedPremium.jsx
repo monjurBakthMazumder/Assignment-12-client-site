@@ -6,7 +6,7 @@ import useGetAllPremiumRequest from "../../../../Hock/useGetAllPremiumRequest";
 import ApprovedPremiumRow from "./ApprovedPremiumRow";
 
 const ApprovedPremium = () => {
-  const { allPremiumRequests, isPendingAllPremiumRequests } =
+  const { allPremiumRequests, isPendingAllPremiumRequests,refetchAllPremiumRequests } =
     useGetAllPremiumRequest();
   return (
     <>
@@ -51,7 +51,7 @@ const ApprovedPremium = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {allPremiumRequests?.map((item) => (
-                          <ApprovedPremiumRow key={item._id} item={item} />
+                          <ApprovedPremiumRow key={item._id} item={item} refetchAllPremiumRequests={refetchAllPremiumRequests}/>
                         ))}
                       </tbody>
                     </table>

@@ -5,11 +5,12 @@ import useUserIsPremium from "../../Hock/useUserIsPremium";
 import useAxiosSecure from "../../Hock/useAxiosSecure";
 import UseAuth from "../../Hock/UseAuth";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BioDataDetailsCard = ({ info, requested }) => {
   const isUserPremium = useUserIsPremium();
   const { user } = UseAuth();
+  const navigate= useNavigate()
   const axiosSecure = useAxiosSecure();
   console.log("isUserPremium", isUserPremium);
   const {
@@ -61,6 +62,32 @@ const BioDataDetailsCard = ({ info, requested }) => {
       }
     });
   };
+
+  const handleContactRequest = () => {
+    axiosSecure.get(`/isBioData/${user.email}`).then((res) => {
+      console.log(res.data);
+      if(res.data){
+        navigate(`/biodatas/checkout/${_id}`)
+      }
+      else{
+        Swal.fire({
+          title: "You have no biodata",
+          text: "If you want to request contact information, you must create a biodata",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ok, create it!"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate(`/dashboard/edit-bioData`)
+          }
+        });
+      }
+    })
+    
+    
+  }
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
       <div className="w-full h-fit">
@@ -154,7 +181,6 @@ const BioDataDetailsCard = ({ info, requested }) => {
             ) : requested === "Pending" ? (
               <button
                 disabled
-                to={`/biodatas/checkout/${_id}`}
                 className="flex-1 min-w-max border border-pink-600  bg-transparent text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium text-center"
               >
                 Request Contact Information is pending
@@ -162,12 +188,12 @@ const BioDataDetailsCard = ({ info, requested }) => {
             ) : requested === "Approved" ? (
               ""
             ) : (
-              <Link
-                to={`/biodatas/checkout/${_id}`}
+              <button
+              onClick={handleContactRequest}
                 className="flex-1 min-w-max text-white bg-pink-600 border border-pink-600  hover:bg-transparent hover:text-pink-600 px-2 py-1 sm:px-4 sm:py-2 font-medium text-center"
               >
                 Request Contact Information
-              </Link>
+              </button>
             )}
           </>
           <button

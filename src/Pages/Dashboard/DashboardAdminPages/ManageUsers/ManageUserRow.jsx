@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 import Swal from "sweetalert2";
 
-const ManageUserRow = ({ item }) => {
+const ManageUserRow = ({ item,refetch }) => {
   const { name, email, role, premium } = item || {};
   const axiosSecure = useAxiosSecure();
   const handleMakeAdmin = () => {
@@ -22,6 +22,7 @@ const ManageUserRow = ({ item }) => {
       if (result.isConfirmed) {
         axiosSecure.put("/users/make-admin", admin).then((res) => {
           if (res.status === 200) {
+            refetch()
             Swal.fire({
               title: "Make admin successfully ",
               text: "This user is admin from now",
@@ -50,6 +51,7 @@ const ManageUserRow = ({ item }) => {
         axiosSecure.put("/users/make-premium-user", premiumUser)
         .then((res) => {
           if (res.status === 200) {
+            refetch()
             Swal.fire({
               title: "Premium user successful",
               text: "This user is premium user from now",
@@ -108,6 +110,7 @@ const ManageUserRow = ({ item }) => {
 
 ManageUserRow.propTypes = {
   item: PropTypes.object,
+  refetch: PropTypes.func,
 };
 
 export default ManageUserRow;

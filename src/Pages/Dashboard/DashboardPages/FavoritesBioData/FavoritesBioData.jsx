@@ -6,7 +6,7 @@ import useGetFavorite from "../../../../Hock/useGetFavorite";
 import FavoritesBioDataRow from "./FavoritesBioDataRow";
 
 const FavoritesBioData = () => {
-  const { favorites, isPendingFavorites } = useGetFavorite();
+  const { favorites, isPendingFavorites,refetchFavorites } = useGetFavorite();
   return (
     <>
       {isPendingFavorites ? (
@@ -56,7 +56,7 @@ const FavoritesBioData = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {favorites?.map((item) => (
-                          <FavoritesBioDataRow key={item._id} item={item} />
+                          <FavoritesBioDataRow key={item._id} item={item} refetchFavorites={refetchFavorites}/>
                         ))}
                       </tbody>
                     </table>

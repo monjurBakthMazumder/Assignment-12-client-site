@@ -9,10 +9,12 @@ import Heading from "../../../../Component/Ui/Heading";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const EditBioData = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
+  const navigate = useNavigate();
 
   // const {
   //   data: info = {},
@@ -121,6 +123,7 @@ const EditBioData = () => {
     await axiosSecure.put("/bioData", bioDataInfo).then((res) => {
       console.log("fetch", res);
       if (res.status === 200) {
+        navigate("/dashboard/view-bioData");
         Swal.fire({
           title: "Biodata added",
           text: "Your Biodata added successfully",
@@ -128,6 +131,7 @@ const EditBioData = () => {
         });
       }
       if (res.status === 201) {
+        navigate("/dashboard/view-bioData");
         Swal.fire({
           title: "Biodata Update",
           text: "Your Biodata update successfully",

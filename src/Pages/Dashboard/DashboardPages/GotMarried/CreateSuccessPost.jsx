@@ -6,8 +6,9 @@ import Container from "../../../../Component/Ui/Container";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Heading from "../../../../Component/Ui/Heading";
 import axios from "axios";
+import PropTypes from 'prop-types';
 
-const CreateSuccessPost = () => {
+const CreateSuccessPost = ({refetchSuccessStory}) => {
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
   const {
@@ -63,6 +64,7 @@ const CreateSuccessPost = () => {
     await axiosSecure.post("/success-story", successInfo).then((res) => {
       console.log("fetch", res);
       if (res.status === 200) {
+        refetchSuccessStory()
         Swal.fire({
           title: "Success story added",
           text: "Your success story added successfully",
@@ -206,6 +208,10 @@ const CreateSuccessPost = () => {
       </BorderContainer>
     </Container>
   );
+};
+
+CreateSuccessPost.propTypes = {
+  refetchSuccessStory : PropTypes.func
 };
 
 export default CreateSuccessPost;

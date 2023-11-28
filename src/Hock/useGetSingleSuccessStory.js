@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "./useAxiosSecure";
 import UseAuth from "./UseAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetSingleSuccessStory = () => {
-  const [info, setInfo] = useState({});
-  const [existingSuccess, setExistingSuccess] = useState(false);
   const axiosSecure = useAxiosSecure();
   const { user } = UseAuth();
-
-  useEffect(() => {
-    axiosSecure.get(`/single-success-story/${user?.email}`).then((res) => {
-      setInfo(res.data.result);
-      setExistingSuccess(res.data.existingSuccess);
-    });
-  }, [axiosSecure, user?.email]);
-  return {info, existingSuccess};
+  const {
+    data: successStory = {},
+    isPending: isPendingSuccessStory,
+    refetch: refetchSuccessStory,
+  } = useQuery({
+    queryKey: ["single-success-story", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/single-success-story/${user?.email}`);
+      return res.data;
+    },
+  });
+  return { successStory, isPendingSuccessStory, refetchSuccessStory };
 };
 
 export default useGetSingleSuccessStory;

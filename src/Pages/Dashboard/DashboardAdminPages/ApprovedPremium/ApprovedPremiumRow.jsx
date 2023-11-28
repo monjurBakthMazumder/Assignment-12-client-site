@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hock/useAxiosSecure";
 
-const ApprovedPremiumRow = ({ item }) => {
+const ApprovedPremiumRow = ({ item,refetchAllPremiumRequests }) => {
   const { _id, name, email, bioData_id } = item || {};
   const axiosSecure = useAxiosSecure();
   const handleMakePremiumUser = () => {
@@ -20,6 +20,7 @@ const ApprovedPremiumRow = ({ item }) => {
           .put(`/bioData-premium-request-approved/${_id}`)
           .then((res) => {
             if (res.status === 200) {
+              refetchAllPremiumRequests()
               Swal.fire({
                 title: "Premium user successful",
                 text: "This biodata is premium from now",
@@ -55,6 +56,7 @@ const ApprovedPremiumRow = ({ item }) => {
 
 ApprovedPremiumRow.propTypes = {
   item: PropTypes.object,
+  refetchAllPremiumRequests: PropTypes.func,
 };
 
 export default ApprovedPremiumRow;
