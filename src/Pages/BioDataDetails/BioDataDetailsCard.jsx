@@ -89,11 +89,11 @@ const BioDataDetailsCard = ({ info, requested }) => {
     
   }
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <div className="w-full h-fit">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
+      <div className="w-full h-fit col-span-2">
         <img src={image} alt="" className="w-full h-fit" />
       </div>
-      <div>
+      <div className="col-span-3">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{name}</h1>
         <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
           Biodata id: {bioData_id} {premium ? <i>(premium)</i> : ""}

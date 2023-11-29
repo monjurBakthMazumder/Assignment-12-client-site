@@ -30,7 +30,7 @@ const BioDataDetails = () => {
             <div className="flex-1 h-fit">
               <BioDataDetailsCard info={result} requested={requested} />
             </div>
-            <div className="lg:w-80 xl:w-96 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-5 h-fit lg:h-screen overflow-y-auto p-2">
+            <div className="lg:w-80 xl:w-96 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-5 h-fit lg:h-[75vh] overflow-y-auto p-2">
               {filterBiodata?.map((item, i) => (
                 <BioDataCard key={i} item={item} />
               ))}
