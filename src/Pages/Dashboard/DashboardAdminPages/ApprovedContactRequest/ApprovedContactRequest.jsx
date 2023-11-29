@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Loading from "../../../../Component/Loading/Loading";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
@@ -6,10 +7,16 @@ import useGetContactRequest from "../../../../Hock/useGetContactRequest";
 import ApprovedContactRequestRow from "./ApprovedContactRequestRow";
 
 const ApprovedContactRequest = () => {
-  const { allContactRequest, isPendingAllContactRequest,refetchAllContactRequest } =
-    useGetContactRequest();
+  const {
+    allContactRequest,
+    isPendingAllContactRequest,
+    refetchAllContactRequest,
+  } = useGetContactRequest();
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | Approved contact request</title>
+      </Helmet>
       {isPendingAllContactRequest ? (
         <Loading />
       ) : (

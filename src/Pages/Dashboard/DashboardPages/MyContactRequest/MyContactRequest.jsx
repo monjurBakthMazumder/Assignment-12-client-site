@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Loading from "../../../../Component/Loading/Loading";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
@@ -6,10 +7,13 @@ import useGetUserContactRequest from "../../../../Hock/useGetUserContactRequest"
 import MyContactRequestRow from "./MyContactRequestRow";
 
 const MyContactRequest = () => {
-  const { contactRequest, isPendingContactRequest,refetchContactRequest } =
+  const { contactRequest, isPendingContactRequest, refetchContactRequest } =
     useGetUserContactRequest();
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | My contact request</title>
+      </Helmet>
       {isPendingContactRequest ? (
         <Loading />
       ) : (
@@ -63,7 +67,11 @@ const MyContactRequest = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {contactRequest?.map((item) => (
-                          <MyContactRequestRow key={item._id} item={item} refetchContactRequest={refetchContactRequest}/>
+                          <MyContactRequestRow
+                            key={item._id}
+                            item={item}
+                            refetchContactRequest={refetchContactRequest}
+                          />
                         ))}
                       </tbody>
                     </table>

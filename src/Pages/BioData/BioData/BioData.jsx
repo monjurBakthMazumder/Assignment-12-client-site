@@ -6,6 +6,7 @@ import useAxiosPublic from "../../../Hock/useAxiosPublic";
 import Heading from "../../../Component/Ui/Heading";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../Component/Loading/Loading";
+import { Helmet } from "react-helmet";
 
 const BioData = () => {
   const axiosPublic = useAxiosPublic();
@@ -26,25 +27,30 @@ const BioData = () => {
   });
 
   return (
-    <Container>
-      <Heading>All Biodatas: {bioData?.length}</Heading>
-      <div className="flex flex-col sm:flex-row gap-5">
-        <div className="sm:w-60">
-          <FilterOption setFilterOption={setFilterOption} />
-        </div>
-        {isPendingBioData ? (
-          <Loading />
-        ) : (
-          <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {bioData.map((item) => (
-                <BioDataCard key={item._id} item={item} />
-              ))}
-            </div>
+    <>
+      <Helmet>
+        <title>MingleHeart | Biodatas</title>
+      </Helmet>
+      <Container>
+        <Heading>All Biodatas: {bioData?.length}</Heading>
+        <div className="flex flex-col sm:flex-row gap-5">
+          <div className="sm:w-60">
+            <FilterOption setFilterOption={setFilterOption} />
           </div>
-        )}
-      </div>
-    </Container>
+          {isPendingBioData ? (
+            <Loading />
+          ) : (
+            <div className="flex-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {bioData.map((item) => (
+                  <BioDataCard key={item._id} item={item} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </Container>
+    </>
   );
 };
 

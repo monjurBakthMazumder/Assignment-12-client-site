@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Loading from "../../../../Component/Loading/Loading";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
@@ -9,6 +10,9 @@ const SuccessStory = () => {
   const { successStory, isPendingSuccessStory } = useGetallSuccessStory();
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | Success story</title>
+      </Helmet>
       {isPendingSuccessStory ? (
         <Loading />
       ) : (

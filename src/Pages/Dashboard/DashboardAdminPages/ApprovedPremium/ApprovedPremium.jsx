@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Loading from "../../../../Component/Loading/Loading";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
@@ -6,10 +7,16 @@ import useGetAllPremiumRequest from "../../../../Hock/useGetAllPremiumRequest";
 import ApprovedPremiumRow from "./ApprovedPremiumRow";
 
 const ApprovedPremium = () => {
-  const { allPremiumRequests, isPendingAllPremiumRequests,refetchAllPremiumRequests } =
-    useGetAllPremiumRequest();
+  const {
+    allPremiumRequests,
+    isPendingAllPremiumRequests,
+    refetchAllPremiumRequests,
+  } = useGetAllPremiumRequest();
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | Approved premium request</title>
+      </Helmet>
       {isPendingAllPremiumRequests ? (
         <Loading />
       ) : (
@@ -51,7 +58,13 @@ const ApprovedPremium = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {allPremiumRequests?.map((item) => (
-                          <ApprovedPremiumRow key={item._id} item={item} refetchAllPremiumRequests={refetchAllPremiumRequests}/>
+                          <ApprovedPremiumRow
+                            key={item._id}
+                            item={item}
+                            refetchAllPremiumRequests={
+                              refetchAllPremiumRequests
+                            }
+                          />
                         ))}
                       </tbody>
                     </table>

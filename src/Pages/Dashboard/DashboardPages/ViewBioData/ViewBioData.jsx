@@ -8,6 +8,7 @@ import useGetUserBioData from "../../../../Hock/useGetUserBioData";
 import Loading from "../../../../Component/Loading/Loading";
 import isBioData from "../../../../Hock/isBioData";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const ViewBioData = () => {
   const { info, isPendingInfo, refetchInfo } = useGetUserBioData();
   const axiosSecure = useAxiosSecure();
@@ -63,6 +64,9 @@ const ViewBioData = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | View biodata</title>
+      </Helmet>
       {isPendingInfo ? (
         <Loading />
       ) : (

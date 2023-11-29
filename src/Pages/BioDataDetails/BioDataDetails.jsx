@@ -5,6 +5,7 @@ import BioDataDetailsCard from "./BioDataDetailsCard";
 import useGetSimilarBiodata from "../../Hock/useGetSimilarBiodata";
 import BioDataCard from "../BioData/BioData/BioDataCard";
 import Loading from "../../Component/Loading/Loading";
+import { Helmet } from "react-helmet";
 
 const BioDataDetails = () => {
   const id = useParams();
@@ -13,8 +14,14 @@ const BioDataDetails = () => {
   const { similarBiodata, isPendingSimilarBiodata } = useGetSimilarBiodata(
     result?.gender
   );
+  const filterBiodata = similarBiodata?.filter(
+    (item) => item?._id !== result._id
+  );
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | Details</title>
+      </Helmet>
       {isPendingSimilarBiodata || isPendingSuccessStory ? (
         <Loading />
       ) : (
@@ -24,7 +31,7 @@ const BioDataDetails = () => {
               <BioDataDetailsCard info={result} requested={requested} />
             </div>
             <div className="lg:w-80 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-5 h-fit">
-              {similarBiodata?.map((item, i) => (
+              {filterBiodata?.map((item, i) => (
                 <BioDataCard key={i} item={item} />
               ))}
             </div>

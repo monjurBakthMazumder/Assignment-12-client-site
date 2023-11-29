@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Loading from "../../../../Component/Loading/Loading";
 import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Container from "../../../../Component/Ui/Container";
@@ -6,9 +7,12 @@ import useGetFavorite from "../../../../Hock/useGetFavorite";
 import FavoritesBioDataRow from "./FavoritesBioDataRow";
 
 const FavoritesBioData = () => {
-  const { favorites, isPendingFavorites,refetchFavorites } = useGetFavorite();
+  const { favorites, isPendingFavorites, refetchFavorites } = useGetFavorite();
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | Favorite biodata</title>
+      </Helmet>
       {isPendingFavorites ? (
         <Loading />
       ) : (
@@ -56,7 +60,11 @@ const FavoritesBioData = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {favorites?.map((item) => (
-                          <FavoritesBioDataRow key={item._id} item={item} refetchFavorites={refetchFavorites}/>
+                          <FavoritesBioDataRow
+                            key={item._id}
+                            item={item}
+                            refetchFavorites={refetchFavorites}
+                          />
                         ))}
                       </tbody>
                     </table>

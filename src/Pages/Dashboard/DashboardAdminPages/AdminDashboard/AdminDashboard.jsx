@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Loading from "../../../../Component/Loading/Loading";
 import BorderLessContainer from "../../../../Component/Ui/BorderLessContainer";
 import Container from "../../../../Component/Ui/Container";
@@ -28,6 +29,9 @@ const AdminDashboard = () => {
   console.log(pieChartData);
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | Admin Dashboard</title>
+      </Helmet>
       {isPendingAllData ? (
         <Loading />
       ) : (

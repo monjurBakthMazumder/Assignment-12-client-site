@@ -6,6 +6,7 @@ import BorderContainer from "../../../../Component/Ui/BorderContainer";
 import Heading from "../../../../Component/Ui/Heading";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../../Component/Loading/Loading";
+import { Helmet } from "react-helmet";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -28,6 +29,9 @@ const ManageUsers = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>MingleHeart | Manage user</title>
+      </Helmet>
       {isPending ? (
         <Loading />
       ) : (
@@ -84,7 +88,11 @@ const ManageUsers = () => {
                       </thead>
                       <tbody className="divide-y divide-pink-200 ">
                         {allUsers?.map((item) => (
-                          <ManageUserRow key={item._id} item={item} refetch={refetch}/>
+                          <ManageUserRow
+                            key={item._id}
+                            item={item}
+                            refetch={refetch}
+                          />
                         ))}
                       </tbody>
                     </table>
