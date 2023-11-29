@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet";
 const ViewBioData = () => {
   const { info, isPendingInfo, refetchInfo } = useGetUserBioData();
   const axiosSecure = useAxiosSecure();
-  const { isUserBioData } = isBioData();
+  const { isUserBioData, isPendingIsUserBioData } = isBioData();
   console.log("isUserBioData", isUserBioData);
   const {
     _id,
@@ -67,7 +67,7 @@ const ViewBioData = () => {
       <Helmet>
         <title>MingleHeart | View biodata</title>
       </Helmet>
-      {isPendingInfo ? (
+      {isPendingInfo || isPendingIsUserBioData ? (
         <Loading />
       ) : (
         <>

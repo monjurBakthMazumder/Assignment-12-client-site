@@ -12,6 +12,7 @@ const ViewSuccess = ({ info }) => {
     marriageDate,
     successStory,
     date,
+    selfGender,
     time,
   } = info || {};
   return (
@@ -23,28 +24,30 @@ const ViewSuccess = ({ info }) => {
           </div>
           <div>
             <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
-              Groom: {selfName}
+              Groom: {selfGender === "Male" ? selfName : partnerName}
             </h1>
             <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
-              Groom biodata id: {selfBioId}
+              Groom biodata id:{" "}
+              {selfGender === "Male" ? selfBioId : partnerBioId}
             </span>
             <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
-              Bride: {partnerName}
+              Bride: {selfGender === "Female" ? selfName : partnerName}
             </h1>
             <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
-              Bride biodata id: {partnerBioId}
+              Bride biodata id:{" "}
+              {selfGender === "Female" ? selfBioId : partnerBioId}
             </span>
 
-            <p className="text-lg font-medium">
+            <p className="text-lg font-medium mt-2">
               <b>Marriage date:</b> {marriageDate}
             </p>
+            <i className="text-xs">
+              Post on: {time} {date}
+            </i>
 
-            <p className="text-base font-medium text-justify">
+            <p className="text-base font-medium text-justify my-5">
               {" "}
               {successStory}
-            </p>
-            <p className="text-sm font-medium">
-              <b>Post on:</b> {time} {date}
             </p>
           </div>
         </div>

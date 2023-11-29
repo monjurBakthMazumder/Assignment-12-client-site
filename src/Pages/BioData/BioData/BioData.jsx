@@ -16,19 +16,16 @@ const BioData = () => {
   const [count, setCount] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    setLoading(true)
+  useEffect(() => {
+    setLoading(true);
     axiosPublic.get("/all-bioData-count").then((res) => {
       setCount(res.data.result);
-      setLoading(false)
+      setLoading(false);
     });
-  },[axiosPublic])
+  }, [axiosPublic]);
   console.log("count", count);
-  const {
-    data: bioData = [],
-    isPending: isPendingBioData,
-  } = useQuery({
-    queryKey: ["all-bioData", filterOption, currentPage, itemPerPage,count],
+  const { data: bioData = [], isPending: isPendingBioData } = useQuery({
+    queryKey: ["all-bioData", filterOption, currentPage, itemPerPage, count],
     queryFn: async () => {
       const res = await axiosPublic.get(
         `/all-bioData?ageTo=${filterOption?.ageTo}&ageFrom=${filterOption?.ageFrom}&gender=${filterOption?.gender}&permanentDivision=${filterOption?.permanentDivision}&presentDivision=${filterOption?.presentDivision}&page=${currentPage}&size=${itemPerPage}`
@@ -61,7 +58,7 @@ const BioData = () => {
           <div className="sm:w-60">
             <FilterOption setFilterOption={setFilterOption} />
           </div>
-          {isPendingBioData || loading ?  (
+          {isPendingBioData || loading ? (
             <Loading />
           ) : (
             <div className="flex-1">
@@ -70,35 +67,35 @@ const BioData = () => {
                   <BioDataCard key={item._id} item={item} />
                 ))}
               </div>
+              <div className="flex flex-wrap justify-end items-center gap-2 my-10">
+                <button
+                  onClick={handlePrevPage}
+                  className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white text-pink-600 bg-transparent`}
+                >
+                  Prev
+                </button>
+                {pages?.map((page, i) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white ${
+                      currentPage === page
+                        ? "bg-pink-600 text-white"
+                        : "text-pink-600 bg-transparent"
+                    }`}
+                  >
+                    {++i}
+                  </button>
+                ))}
+                <button
+                  onClick={handleNextPage}
+                  className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white text-pink-600 bg-transparent`}
+                >
+                  Next
+                </button>
+              </div>
             </div>
           )}
-        </div>
-        <div className="flex flex-wrap justify-center items-center gap-2 my-10">
-          <button
-            onClick={handlePrevPage}
-            className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white text-pink-600 bg-transparent`}
-          >
-            Prev
-          </button>
-          {pages?.map((page, i) => (
-            <button
-              key={page}
-              onClick={() => setCurrentPage(page)}
-              className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white ${
-                currentPage === page
-                  ? "bg-pink-600 text-white"
-                  : "text-pink-600 bg-transparent"
-              }`}
-            >
-              {++i}
-            </button>
-          ))}
-          <button
-            onClick={handleNextPage}
-            className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white text-pink-600 bg-transparent`}
-          >
-            Next
-          </button>
         </div>
       </Container>
     </>

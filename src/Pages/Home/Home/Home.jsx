@@ -14,7 +14,6 @@ const Home = () => {
       <PremiumBioData />
       <Stat />
       <SuccessStory />
-      Home
     </div>
   );
 };

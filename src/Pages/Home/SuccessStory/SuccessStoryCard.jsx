@@ -11,6 +11,7 @@ const SuccessStoryCard = ({ item }) => {
     date,
     time,
     marriageDate,
+    selfGender,
     _id,
   } = item || {};
   return (
@@ -19,22 +20,27 @@ const SuccessStoryCard = ({ item }) => {
         <img src={coupleImg} alt="" className="w-full object-cover" />
       </div>
       <div className="p-4 md:p-6 bg-white">
-        <p className=" mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 flex flex-wrap justify-between items-center gap-5">
-          <p>Self Biodata id: {selfBioId} </p>
-          <p>Partner Biodata id: {partnerBioId} </p>
-        </p>
+        <i className="block mt-1 text-xs">
+          post on: {time} {date}
+        </i>
+
         <h3 className="text-xl font-semibold text-gray-800 ">
-          {selfName}&#39;s <i className="font-light"> marriage to</i> {partnerName}
+          Groom: {selfGender === "Male" ? selfName : partnerName}
         </h3>
-        <span className="block mt-1">
+        <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
+          Groom biodata id: {selfGender === "Male" ? selfBioId : partnerBioId}
+        </span>
+        <h3 className="text-xl font-semibold text-gray-800 ">
+          Bride: {selfGender === "Female" ? selfName : partnerName}
+        </h3>
+        <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500 mt-1">
+          Bride biodata id: {selfGender === "Female" ? selfBioId : partnerBioId}
+        </span>
+        <span className="block mt-1 text-base">
           <b>Marriage Date: </b> {marriageDate}
         </span>
         <span className="block mb-1">
-          <b>Review: </b>
-          {successStory?.slice(0, 150)}
-        </span>
-        <span className="block mt-1">
-          <b>Post Date: </b> {time} {date}
+          {successStory?.slice(0, 200)}...
         </span>
         {/* <div className="text-center">
         <Link

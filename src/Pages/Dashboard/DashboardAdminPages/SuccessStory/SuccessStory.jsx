@@ -30,6 +30,18 @@ const SuccessStory = () => {
                             scope="col"
                             className="px-6 py-3 text-start text-sm font-semibold text-pink-600 uppercase"
                           >
+                            Male name
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-start text-sm font-semibold text-pink-600 uppercase"
+                          >
+                            Female name
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-start text-sm font-semibold text-pink-600 uppercase"
+                          >
                             Male id
                           </th>
                           <th
@@ -42,7 +54,7 @@ const SuccessStory = () => {
                             scope="col"
                             className="px-6 py-3 text-start text-sm font-semibold text-pink-600 uppercase"
                           >
-                            Marriage
+                            Marriage date
                           </th>
                           <th
                             scope="col"
