@@ -15,12 +15,12 @@ const BioDataCard = ({ item }) => {
     premium,
   } = item || {};
   return (
-    <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl ">
-      <div className="h-72 flex flex-col justify-center items-center bg-pink-600 rounded-t-xl overflow-hidden">
+    <div className="group flex flex-col h-full bg-pink-100 border border-pink-300 shadow-sm rounded">
+      <div className="h-72 flex flex-col justify-center items-center bg-pink-100 rounded-t overflow-hidden">
         <img src={image} alt="" className="w-full object-cover" />
       </div>
-      <div className="p-4 md:p-6 bg-white">
-        <span className="block mb-1 text-xs font-semibold uppercase text-pink-600 dark:text-pink-500">
+      <div className="p-4 md:p-6 bg-pink-50  rounded-b">
+        <span className="block mb-1 text-xs font-semibold uppercase text-pink-600">
           Biodata id: {bioData_id} {premium ? <i>(premium)</i> : ""}
         </span>
         <h3 className="text-xl font-semibold text-gray-800 ">{name}</h3>
