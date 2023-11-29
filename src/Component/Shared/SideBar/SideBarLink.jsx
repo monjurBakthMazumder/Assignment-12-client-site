@@ -15,6 +15,7 @@ const SideBarLink = () => {
   const { logoutUser } = UseAuth();
   const handleLogOut = () => {
     logoutUser().then(() => {
+      window.location.reload();
       Swal.fire({
         title: "LogOut",
         text: "Log out successfully",
