@@ -17,7 +17,7 @@ const SuccessStoryCard = ({ item }) => {
   return (
     <div className="group flex flex-col h-full bg-pink-100 border border-pink-300 shadow-sm rounded">
       <div className="h-72 flex flex-col justify-center items-center bg-pink-100 rounded-t overflow-hidden">
-        <img src={coupleImg} alt="" className="w-full object-cover" />
+        <img src={coupleImg} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="p-4 md:p-6 bg-pink-50  rounded-b">
         <i className="block mt-1 text-xs">
