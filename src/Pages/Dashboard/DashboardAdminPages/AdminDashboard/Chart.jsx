@@ -4,7 +4,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recha
 const Chart = ({ pieChartData }) => {
   const data = pieChartData;
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#da0db0"];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
