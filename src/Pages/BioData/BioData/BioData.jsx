@@ -18,11 +18,11 @@ const BioData = () => {
 
   useEffect(() => {
     setLoading(true);
-    axiosPublic.get("/all-bioData-count").then((res) => {
+    axiosPublic.get(`/all-bioData-count?ageTo=${filterOption?.ageTo}&ageFrom=${filterOption?.ageFrom}&gender=${filterOption?.gender}&permanentDivision=${filterOption?.permanentDivision}&presentDivision=${filterOption?.presentDivision}`).then((res) => {
       setCount(res.data.result);
       setLoading(false);
     });
-  }, [axiosPublic]);
+  }, [axiosPublic,filterOption]);
   console.log("count", count);
   const { data: bioData = [], isPending: isPendingBioData } = useQuery({
     queryKey: ["all-bioData", filterOption, currentPage, itemPerPage, count],
