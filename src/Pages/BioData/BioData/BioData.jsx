@@ -56,7 +56,7 @@ const BioData = () => {
         <Heading>All Biodatas</Heading>
         <div className="flex flex-col sm:flex-row gap-5">
           <div className="sm:w-60">
-            <FilterOption setFilterOption={setFilterOption} />
+            <FilterOption setFilterOption={setFilterOption} setCurrentPage={setCurrentPage}/>
           </div>
           {isPendingBioData || loading ? (
             <Loading />

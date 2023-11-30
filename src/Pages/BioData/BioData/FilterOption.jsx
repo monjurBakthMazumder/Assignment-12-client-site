@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 
 import PropTypes from "prop-types";
-const FilterOption = ({ setFilterOption }) => {
+const FilterOption = ({ setFilterOption, setCurrentPage }) => {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       gender: "",
@@ -12,6 +12,7 @@ const FilterOption = ({ setFilterOption }) => {
     },
   });
   const onSubmit = async (data) => {
+    setCurrentPage(0)
     const gender = data.gender;
     const ageTo = data.ageTo;
     const ageFrom = data.ageFrom;
@@ -28,6 +29,7 @@ const FilterOption = ({ setFilterOption }) => {
     console.log(filterOption);
   };
   const handleReset = () => {
+    setCurrentPage(0)
     reset();
   };
   return (
@@ -143,5 +145,6 @@ const FilterOption = ({ setFilterOption }) => {
 
 FilterOption.propTypes = {
   setFilterOption: PropTypes.func,
+  setCurrentPage: PropTypes.func,
 };
 export default FilterOption;
