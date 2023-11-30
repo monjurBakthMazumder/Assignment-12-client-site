@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 const SuccessStoryModal = ({ item }) => {
   const {
+    _id,
     selfBioId,
     partnerBioId,
     selfName,
@@ -17,7 +18,7 @@ const SuccessStoryModal = ({ item }) => {
     <>
       <div className="text-center">
         <button
-          data-hs-overlay="#hs-sign-out-alert"
+          data-hs-overlay={`#hs-sign-out-alert${_id}`}
           type="button"
           className="py-2 px-5 inline-flex justify-center items-center gap-2 rounded font-semibold border border-pink-600 bg-transparent text-pink-500 hover:bg-pink-600 hover:text-white"
         >
@@ -26,7 +27,7 @@ const SuccessStoryModal = ({ item }) => {
       </div>
 
       <div
-        id="hs-sign-out-alert"
+        id={`hs-sign-out-alert${_id}`}
         className="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[60] overflow-x-hidden overflow-y-auto"
       >
         <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
@@ -60,7 +61,8 @@ const SuccessStoryModal = ({ item }) => {
                 <p className="my-3 text-justify" style={{ overflow: 'auto' }}>{successStory}</p>
                 <div className="text-center">
                   <button
-                    data-hs-overlay="#hs-sign-out-alert"
+                    // data-hs-overlay="#hs-sign-out-alert"
+                    data-hs-overlay={`#hs-sign-out-alert${_id}`}
                     className="mt-3 py-2 px-5 inline-flex justify-center items-center gap-2 rounded font-semibold border border-pink-600 bg-transparent text-pink-500 hover:bg-pink-600 hover:text-white"
                   >
                     Cancel
