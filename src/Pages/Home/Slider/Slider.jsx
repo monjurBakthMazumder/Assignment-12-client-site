@@ -25,7 +25,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="">
+    <div className="mb-5 md:mb-10">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
