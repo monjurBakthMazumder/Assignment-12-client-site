@@ -61,40 +61,48 @@ const BioData = () => {
           {isPendingBioData || loading ? (
             <Loading />
           ) : (
-            <div className="flex-1">
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-                {bioData.map((item) => (
-                  <BioDataCard key={item._id} item={item} />
-                ))}
-              </div>
-              <div className="flex flex-wrap justify-end items-center gap-2 my-10">
-                <button
-                  onClick={handlePrevPage}
-                  className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white text-pink-600 bg-transparent`}
-                >
-                  Prev
-                </button>
-                {pages?.map((page, i) => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white ${
-                      currentPage === page
-                        ? "bg-pink-600 text-white"
-                        : "text-pink-600 bg-transparent"
-                    }`}
-                  >
-                    {++i}
-                  </button>
-                ))}
-                <button
-                  onClick={handleNextPage}
-                  className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white text-pink-600 bg-transparent`}
-                >
-                  Next
-                </button>
-              </div>
-            </div>
+            <>
+              {bioData?.length < 1 ? (
+                <div className="flex justify-center items-center flex-1 text-3xl md:text-4xl lg:text-5xl font-semibold">
+                  <h1>No Biodata Available</h1>
+                </div>
+              ) : (
+                <div className="flex-1">
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                    {bioData.map((item) => (
+                      <BioDataCard key={item._id} item={item} />
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap justify-end items-center gap-2 my-10">
+                    <button
+                      onClick={handlePrevPage}
+                      className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white text-pink-600 bg-transparent`}
+                    >
+                      Prev
+                    </button>
+                    {pages?.map((page, i) => (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white ${
+                          currentPage === page
+                            ? "bg-pink-600 text-white"
+                            : "text-pink-600 bg-transparent"
+                        }`}
+                      >
+                        {++i}
+                      </button>
+                    ))}
+                    <button
+                      onClick={handleNextPage}
+                      className={`px-2 py-1 border border-pink-600 flex justify-center items-center gap-2 hover:bg-pink-600 hover:text-white text-pink-600 bg-transparent`}
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
       </Container>
