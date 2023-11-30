@@ -22,6 +22,7 @@ import SuccessStory from "../Pages/Dashboard/DashboardAdminPages/SuccessStory/Su
 import BioDataDetails from "../Pages/BioDataDetails/BioDataDetails";
 import Checkout from "../Pages/Checkout/Checkout/Checkout";
 import AdminRoute from "./AdminRoute";
+import UserRoute from "./userRoute";
 
 const Router = createBrowserRouter([
   {
@@ -81,45 +82,55 @@ const Router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       // normal user routes
-      
+
       {
         path: "/dashboard/view-bioData",
         element: (
-          <PrivateRoute>
-            <ViewBioData />
-          </PrivateRoute>
+          <UserRoute>
+            <PrivateRoute>
+              <ViewBioData />
+            </PrivateRoute>
+          </UserRoute>
         ),
       },
       {
         path: "/dashboard/edit-bioData",
         element: (
-          <PrivateRoute>
-            <EditBioData />
-          </PrivateRoute>
+          <UserRoute>
+            <PrivateRoute>
+              <EditBioData />
+            </PrivateRoute>
+          </UserRoute>
         ),
       },
       {
         path: "/dashboard/my-contact-request",
         element: (
-          <PrivateRoute>
-            <MyContactRequest />
-          </PrivateRoute>
+          <UserRoute>
+            <PrivateRoute>
+              <MyContactRequest />
+            </PrivateRoute>
+          </UserRoute>
         ),
       },
       {
         path: "/dashboard/favorites-bioData",
         element: (
-          <PrivateRoute>
-            <FavoritesBioData />
-          </PrivateRoute>
+          <UserRoute>
+            <PrivateRoute>
+              <FavoritesBioData />
+            </PrivateRoute>
+          </UserRoute>
         ),
       },
       {
         path: "/dashboard/got-married",
         element: (
-          <PrivateRoute>
-            <GotMarried />
-          </PrivateRoute>
+          <UserRoute>
+            <PrivateRoute>
+              <GotMarried />
+            </PrivateRoute>
+          </UserRoute>
         ),
       },
       // admin only routes
