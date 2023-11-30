@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import SuccessStoryModal from "../../Dashboard/DashboardAdminPages/SuccessStory/SuccessStoryModal";
 
 const SuccessStoryCard = ({ item }) => {
   const {
@@ -12,7 +13,6 @@ const SuccessStoryCard = ({ item }) => {
     time,
     marriageDate,
     selfGender,
-    _id,
   } = item || {};
   return (
     <div className="group flex flex-col h-full bg-pink-100 border border-pink-300 shadow-sm rounded">
@@ -39,17 +39,8 @@ const SuccessStoryCard = ({ item }) => {
         <span className="block mt-1 text-base">
           <b>Marriage Date: </b> {marriageDate}
         </span>
-        <span className="block mb-1">
-          {successStory?.slice(0, 200)}...
-        </span>
-        {/* <div className="text-center">
-        <Link
-          to={`/success-story/details/${_id}`}
-          className="text-xs py-1 px-3 inline-flex justify-center items-center gap-2 rounded-sm font-semibold border border-pink-600 bg-transparent text-pink-500 hover:bg-pink-600 hover:text-white cursor-pointer mt-5"
-        >
-          Details
-        </Link>
-      </div> */}
+        <span className="block mb-5">{successStory?.slice(0, 200)}...</span>
+        <SuccessStoryModal item={item} />
       </div>
     </div>
   );
