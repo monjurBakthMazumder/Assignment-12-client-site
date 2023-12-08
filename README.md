@@ -1,7 +1,18 @@
 # MingleHeart
 
 - [Live Link](https://mingle-heart.web.app/)
+- [Server site github Link](https://github.com/monjurBakthMazumder/Assignment-12-server-site)
 
+
+Technology used-
+- React js
+- Firebase
+- Preline UI - Tailwind CSS component library
+- Mongoose
+- node js
+- express js
+
+Feature of project-
 - This is a Patra Patri search website, from here you can find the Patra Patri of your choice.
 - You need to create an account first to find your desired match. Then you can see all the brides and grooms from the biodata page.
 - If you are not a premium user then you have to request by paying 500 tk to view the contact information of each biodata. Then wait for admin approval. If admin approves, you can see the contact information of that biodata on my contact request page.
